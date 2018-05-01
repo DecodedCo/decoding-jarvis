@@ -25,10 +25,12 @@ Smart Coffee
 
 
 # Nest Camera
+Device: [Nest Camera](https://www.amazon.com/Nest-Security-Camera-Matters-Anywhere/dp/B00WBJGUA2/ref=sr_1_1?s=grocery&ie=UTF8&qid=1523896108&sr=8-1&keywords=nest+cam)
+Documentation: [Nest Developers](https://developers.nest.com/)
 
 ### Attendee Device Setup Steps
 1. Plug Nest into computer & select device from menu
 2. Click `Nest Cam Setup (Macintosh)` to get started.
 3. Follow up setup prompts
 
-### Terminal Commands
+### Nest API
