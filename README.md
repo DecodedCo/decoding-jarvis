@@ -9,9 +9,9 @@ This repo is the hub for creating a client build based on [this proposal](https:
 - [Postman](https://www.getpostman.com/apps)
 
 ## Table of Contents by Device
-[Nest Camera](#nest-camera)  
-[Nest Thermostat]()  
-[Sonos Speaker](#sonos-speaker)  
+[Nest Camera](#nest-camera)
+[Sonos Speaker](#sonos-speaker)    
+Nest Thermostat 
 Sylvania Smart Color Bulb  
 Smart Outlet  
 Motion Sensor  
