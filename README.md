@@ -1,9 +1,8 @@
 # Decoding Javis
-======
-This repo is the hub for creating a client build based on [this proposal](https://docs.google.com/presentation/d/1i-W7ku5x-y3Ck8yJlZdvMJUU96WQ34Bt40LDqQVRf5Y/edit#slide=id.g24f9bda3d1_0_91) for Itaú where they will
+This repo is the hub for creating a client build based on [this proposal](https://docs.google.com/presentation/d/1i-W7ku5x-y3Ck8yJlZdvMJUU96WQ34Bt40LDqQVRf5Y/edit#slide=id.g24f9bda3d1_0_91) for Itaú.
 
 **The Mission**  
-"By the end of this session, participants will leave with a powerful, elevated understanding of disruptive tech, an AI project they have built themselves, and the ability to approach strategy at Itaú more effectively.""
+"By the end of this session, participants will leave with a powerful, elevated understanding of disruptive tech, an AI project they have built themselves, and the ability to approach strategy at Itaú more effectively."
 
 ## Attendee Downloads
 - [Chrome](https://www.google.com/chrome/)  
@@ -67,7 +66,6 @@ Below are materials for easy reference later when we are building out the full f
 
 <!-- ************************** SONOS ************************** -->
 ## Sonos Speaker
-------
 **Device:** [Sonos Speaker](https://www.amazon.com/All-new-Sonos-One-built-incredible/dp/B074XLMYY5/ref=sr_1_1_sspa?ie=UTF8&qid=1523894304&sr=8-1-spons&keywords=sonos+wireless+speakers&psc=1)  
 **Dev Documentation:** [Sonos Music Partners](https://musicpartners.sonos.com/?q=docs)
 <!-- **API Documentation:** [Nest Camera Official API](https://developers.nest.com/documentation/cloud/api-camera)   -->
@@ -78,9 +76,9 @@ Below are materials for easy reference later when we are building out the full f
 <!-- **Live Stream:** [Our camera url](https://home.nest.com/camera/4fe5618ba62f413dbd943fc47b2f34e1)   -->
 <!-- **Current Permissions:** Camera & Images Read   -->
 
-**Mobile App:** Sonos Control
-**Works with IFTTT?**: No
-**Works with Google Home?**: No (But does work with Alexa)
+**Mobile App:** Sonos Control  
+**Works with IFTTT?**: No  
+**Works with Google Home?**: No (But does work with Alexa)  
 
 ### Device Setup
 1. Plug Sonos Speaker into outlet & connect to internet
