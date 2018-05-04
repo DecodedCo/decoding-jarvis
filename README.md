@@ -10,7 +10,7 @@ This repo is the hub for creating a client build based on [this proposal](https:
 
 ## Table of Contents by Device
 [Nest Camera](#nest-camera)  
-[Nest Thermostat](#nest-thermostat)
+[Nest Thermostat](#nest-thermostat)  
 [Sonos Speaker](#sonos-speaker)     
 Sylvania Smart Color Bulb  
 Smart Outlet  
@@ -20,9 +20,6 @@ Little Bit Cloud
 Chromecast  
 Fitbit Band  
 Fitbit Scale  
-
-## Ariana Random Thoughts
-- TBD
 
 <!-- ************************** NEST ************************** -->
 ## Nest Camera
@@ -95,7 +92,6 @@ Below are materials for easy reference later when we are building out the full f
 - [Node Nest Library](https://github.com/johnwyles/node-nest-api)  
 - [Python Nest Library](https://github.com/nestlabs/nest-python)  
 
-#### Mark Notes
 
 <!-- ************************** SONOS ************************** -->
 ## Sonos Speaker
