@@ -30,7 +30,7 @@ Chromecast
 **Fitbit Account:** jarvis@decoded.com  
 **Current Permissions:** Read
 
-**Mobile App:** FitBit
+**Mobile App:** FitBit  
 **Works with IFTTT?**: Both seem to be compatible with IFTTT but it takes a while for the applets to fire
 **Works with Google Home?**: No
 
