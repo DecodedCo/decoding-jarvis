@@ -25,7 +25,7 @@ html, body {
 #chatroom {
   position: absolute;
   margin: 0;
-  padding: 0;
+  padding: 0 2%;
   width: 100%;
   color: gray;
   font-size: 1.5rem;
@@ -38,6 +38,10 @@ html, body {
   margin: 0;
   overflow-y: scroll;
   padding: 10px 20px 10px 20px;
+}
+
+.jarvis_message {
+  text-align: right;
 }
 
 /* Input Styling*/
