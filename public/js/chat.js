@@ -34,8 +34,25 @@
   socket.on("new_message", (data) => {
     // when there's a new message, create new paragraph & post it
     updated_message = document.createElement("p");
+    updated_message.setAttribute("class", "chat_message");
     updated_message.innerHTML += "ariana: " + data.message + "";
-    chatroom.insertBefore(updated_message, chatroom.childNodes[0])
+    chatroom.appendChild(updated_message);
+
+    setTimeout(function() {
+      jarvisResponse(data.message);
+    }, 1000 );
   })
+
+  function jarvisResponse(data){
+    jarvis_response = document.createElement("p")
+    jarvis_response.setAttribute("class", "jarvis_message");
+
+    if(data === 'light on') {
+      jarvis_response.innerHTML += "jarvis: " + "Turning on light";
+    } else {
+      jarvis_response.innerHTML += "jarvis: " + "Sorry, I don't understand";
+    }
+    chatroom.appendChild(jarvis_response);
+  }
 
 })();
