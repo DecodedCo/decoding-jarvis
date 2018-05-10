@@ -1,4 +1,4 @@
-# Decoding Javis
+# Decoding Jarvis
 This repo is the hub for creating a client build based on [this proposal](https://docs.google.com/presentation/d/1i-W7ku5x-y3Ck8yJlZdvMJUU96WQ34Bt40LDqQVRf5Y/edit#slide=id.g24f9bda3d1_0_91) for Itaú.
 
 **The Mission**  
