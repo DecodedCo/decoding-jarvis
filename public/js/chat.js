@@ -34,7 +34,7 @@
   socket.on("new_message", (data) => {
     // when there's a new message, create new paragraph & post it
     updated_message = document.createElement("p");
-    updated_message.innerHTML += data.message;
+    updated_message.innerHTML += "ariana: " + data.message + "";
     chatroom.insertBefore(updated_message, chatroom.childNodes[0])
   })
 
