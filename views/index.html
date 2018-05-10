@@ -3,24 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
 
-    <header>
-      <h1>Decoding Jarvis 🤖</h1>
-    </header>
+    <div>
+      <!--  Chat History -->
+      <section id="chatroom"></section>
 
-    <section id="chatroom">
-      <section id="feedback"></section>
-    </section>
+      <!--  Chat Input -->
+      <section>
+        <button id="voice" type="button"><i class="material-icons md-48px">keyboard_voice</i></button>
+        <input id="message" type="text" placeholder="Type here..."/>
+        <button id="send_message" type="button"><i class="material-icons md-48px">send</i></button>
+      </section>
 
+    </div>
 
-
-    <section id="input_zone">
-      <input id="message" class="vertical-align" type="text" />
-      <button id="send_message" class="vertical-align" type="button">Send</button>
-    </section>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <script src="js/chat.js"></script>
   </body>
 </html>
