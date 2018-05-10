@@ -1,0 +1,28 @@
+{
+  "name": "decoding-jarvis",
+  "version": "1.0.0",
+  "description": "Jarvis AI chatbot app ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DecodedCo/decoding-jarvis.git"
+  },
+  "keywords": [
+    "ai",
+    "iot"
+  ],
+  "author": "Decoded",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DecodedCo/decoding-jarvis/issues"
+  },
+  "homepage": "https://github.com/DecodedCo/decoding-jarvis#readme",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
+  }
+}
