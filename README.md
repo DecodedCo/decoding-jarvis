@@ -20,3 +20,10 @@ Chromecast
 - [Samsung Smart Outlet](documentation/samsung.md)   
 - [Sylvania Smart Color Bulb](documentation/samsung.md)  
 - [Yale Smart Lock](documentation/samsung.md)  
+
+## Build Resources
+- [socket.io](https://socket.io/)
+- [socket.io demo](https://socket.io/demos/chat/)
+- [Google Dialogflow](https://dialogflow.com/docs/getting-started/basics)
+- [Simple AI Chatbot With Web Speech API & Node.js](https://www.smashingmagazine.com/2017/08/ai-chatbot-web-speech-api-node-js/)
+- [Code for tutorial above](https://github.com/girliemac/web-speech-ai)
