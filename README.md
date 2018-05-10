@@ -10,13 +10,13 @@ This repo is the hub for creating a client build based on [this proposal](https:
 
 ## Table of Contents by Device
 Chromecast  
-[Fitbit Band/Scale](fitbit.md)  
-[LittleBit Cloud](littlebits.md)  
-[Nest Camera](nest.md)  
-[Nest Thermostat](nest.md)  
-[Sonos Speaker](sonos.md)  
-[Samsung Connected Devices](samsung.md) including:
-- [Samsung Motion Sensor](samsung.md)
-- [Samsung Smart Outlet](samsung.md)   
-- [Sylvania Smart Color Bulb](samsung.md)  
-- [Yale Smart Lock](samsung.md)  
+[Fitbit Band/Scale](documentation/fitbit.md)  
+[LittleBit Cloud](documentation/littlebits.md)  
+[Nest Camera](documentation/nest.md)  
+[Nest Thermostat](documentation/nest.md)  
+[Sonos Speaker](documentation/sonos.md)  
+[Samsung Connected Devices](documentation/samsung.md) including:
+- [Samsung Motion Sensor](documentation/samsung.md)
+- [Samsung Smart Outlet](documentation/samsung.md)   
+- [Sylvania Smart Color Bulb](documentation/samsung.md)  
+- [Yale Smart Lock](documentation/samsung.md)  
