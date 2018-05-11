@@ -42,23 +42,4 @@ window.onload = function () {
       jarvisResponse(data.message);
     }, 1000 );
   })
-
-  function jarvisResponse(data){
-    jarvis_response = document.createElement("p")
-    jarvis_response.setAttribute("class", "jarvis_message");
-
-    let intent = parseIntent(data);
-
-    if(intent === 'light on') {
-      jarvis_response.innerHTML += "jarvis: " + "Turning on light";
-    } else {
-      jarvis_response.innerHTML += "jarvis: " + "Sorry, I don't understand";
-    }
-    chatroom.appendChild(jarvis_response);
-  }
-
-  function parseIntent(data) {
-    return data;
-  }
-
 };

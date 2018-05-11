@@ -33,16 +33,3 @@ recognition.addEventListener('result', (e) => {
   }, 1000 );
 
 });
-
-// REFACTOR!
-// function jarvisResponse(data){
-//   jarvis_response = document.createElement("p")
-//   jarvis_response.setAttribute("class", "jarvis_message");
-//
-//   if(data === 'light on') {
-//     jarvis_response.innerHTML += "jarvis: " + "Turning on light";
-//   } else {
-//     jarvis_response.innerHTML += "jarvis: " + "Sorry, I don't understand";
-//   }
-//   chatroom.appendChild(jarvis_response);
-// }
