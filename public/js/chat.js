@@ -1,4 +1,4 @@
-(function () {
+window.onload = function () {
 
   // makes connection to server socket
   var socket = io.connect('http://localhost:3000');
@@ -60,5 +60,5 @@
   function parseIntent(data) {
     return data;
   }
-  
-})();
+
+};
