@@ -3,7 +3,7 @@
 // outlet, lightbulb, lock, sonos speaker
 
 // Future items to intergrate:
-// Google Home, Chromecast, LittleBits, Spotify API
+// Chromecast, LittleBits, Spotify API
 
 function jarvisResponse(data){
   jarvis_response = document.createElement("p")
@@ -18,10 +18,12 @@ function jarvisResponse(data){
     // To do: add variables for steps, sleep & heartrate
     case "daily stats":
       answer = "Here are your daily stats...";
+      //API CALL HERE
       break;
     // Nest Camera
     case "show camera":
       answer = "Showing view of office camera";
+      // API CALL HERE
       break;
     // Nest Thermostat
     // To do: add temperature variable
