@@ -17,22 +17,16 @@ exports.jarvis = (req, res) => {
     case "Turn light on":
       smartthing.light("on").then(result => {
         res.json(result);
-      }).catch(error => {
-        res.json(error);
       });
       break;
     case "Turn light off":
       smartthing.light("off").then(result => {
         res.json(result);
-      }).catch(error => {
-        res.json(error);
       });
       break;
     case "Change light color":
       smartthing.light("",parameters.color).then(result => {
         res.json(result);
-      }).catch(error => {
-        res.json(error);
       });
       break;
     default:
@@ -44,6 +38,4 @@ exports.jarvis = (req, res) => {
 // local testing
 // smartthing.light("off").then(result => {
 //   console.log(result);
-// }).catch(error => {
-//   console.error(error);
 // });

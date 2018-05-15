@@ -31,9 +31,9 @@ exports.light = (state, color = null) => {
     }
 
     commandSmartThings(device, capability, command, argument).then( () => {
-      resolve ({ 'fulfillmentText': fulfillmentText }); // this is not returning...
+      resolve ({ 'fulfillmentText': fulfillmentText });
     }).catch((error) => {
-      reject ({ 'fulfillmentText': error }); // this is not returning...
+      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
     }); // end smartThings
   
   }); // end Promise
