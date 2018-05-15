@@ -9,9 +9,9 @@ const smartthing = require('./smartthings.js');
 exports.jarvis = (req, res) => {
 
   let intent = req.body.queryResult.intent.displayName;
-  let parameters = req.body.queryResult.intent.parameters;
-  
-  console.log(`Processing $intent`);
+  let parameters = req.body.queryResult.parameters;
+
+  console.log(`Processing ${intent}`,parameters);
 
   switch (intent) {
     case "Turn light on":
@@ -20,8 +20,14 @@ exports.jarvis = (req, res) => {
     case "Turn light off":
       res.json(smartthing.light("off"));
       break;
+    case "Change light color":
+      res.json(smartthing.light("",parameters.color));
     default:
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
   }
 
 }; // end Jarvis
+
+// local testing
+//console.log(smartthing.light("off"));
+//console.log(smartthing.light("","white"));

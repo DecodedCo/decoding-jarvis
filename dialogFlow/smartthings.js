@@ -5,20 +5,33 @@
 'use strict';
 
 const https = require('https');
-
 const host = 'api.smartthings.com';
 const token = '8cfc63f8-e342-4607-9797-09ee094b2970';
+var fulfillmentText;
 
-exports.light = (state) => {
+exports.light = (state, color = null) => {
+
+  const colors = require('./colors.js');
   
-  let device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
-  let capability = 'switch';
-  let command = state; // on or off
+  const device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
+  var capability, command, argument;
 
-  commandSmartThings(device, capability, command).then((output) => {
-    return ({ 'fulfillmentText': 'Turning the light ' + command });
+  if (!color) {
+    capability = 'switch';
+    command = state; // on or off
+    argument = null;
+    fulfillmentText = `Turning the light ${state}`;
+  } else {
+    capability = 'colorControl';
+    command = 'setColor';
+    argument = colors.tohs(color);
+    fulfillmentText = `Turning the light ${color}`;
+  }
+
+  commandSmartThings(device, capability, command, argument).then( () => {
+    return ({ 'fulfillmentText': fulfillmentText }); // this is not returning...
   }).catch((error) => {
-    return ({ 'fulfillmentText': error });
+    return ({ 'fulfillmentText': error }); // this is not returning...
   });
 
 }; // end light
