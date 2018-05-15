@@ -11,28 +11,32 @@ var fulfillmentText;
 
 exports.light = (state, color = null) => {
 
-  const colors = require('./colors.js');
+  return new Promise((resolve, reject) => {
+
+    const colors = require('./colors.js');
+    
+    const device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
+    var capability, command, argument;
+
+    if (!color) {
+      capability = 'switch';
+      command = state; // on or off
+      argument = null;
+      fulfillmentText = `Turning the light ${state}`;
+    } else {
+      capability = 'colorControl';
+      command = 'setColor';
+      argument = colors.tohs(color);
+      fulfillmentText = `Turning the light ${color}`;
+    }
+
+    commandSmartThings(device, capability, command, argument).then( () => {
+      resolve ({ 'fulfillmentText': fulfillmentText }); // this is not returning...
+    }).catch((error) => {
+      reject ({ 'fulfillmentText': error }); // this is not returning...
+    }); // end smartThings
   
-  const device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
-  var capability, command, argument;
-
-  if (!color) {
-    capability = 'switch';
-    command = state; // on or off
-    argument = null;
-    fulfillmentText = `Turning the light ${state}`;
-  } else {
-    capability = 'colorControl';
-    command = 'setColor';
-    argument = colors.tohs(color);
-    fulfillmentText = `Turning the light ${color}`;
-  }
-
-  commandSmartThings(device, capability, command, argument).then( () => {
-    return ({ 'fulfillmentText': fulfillmentText }); // this is not returning...
-  }).catch((error) => {
-    return ({ 'fulfillmentText': error }); // this is not returning...
-  });
+  }); // end Promise
 
 }; // end light
 
@@ -68,16 +72,20 @@ function commandSmartThings (device, capability, command, argument = null) {
     } // end options
 
     const request = https.request(options, function(res) {
-      let body = ''
+      let body = '';
+      if (res.statusCode != '200') {
+        reject(`Error calling the Smarthings API: Status ${res.statusCode}`);
+      }
       res.on('data', (d) => { body += d; });
       res.on('end', () => {
         resolve(body);
       });
-      res.on('error', (error) => {
-        console.log(`Error calling the Smarthings API: ${error}`)
-        reject(error);
-      });
     }); // end request
+
+    request.on('error', (error) => {
+      console.log(`Error calling the Smarthings API: ${error}`)
+      reject(`Error calling the Smarthings API: ${error}`);
+    });
 
     request.write(body);
 

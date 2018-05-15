@@ -15,13 +15,26 @@ exports.jarvis = (req, res) => {
 
   switch (intent) {
     case "Turn light on":
-      res.json(smartthing.light("on"));
+      smartthing.light("on").then(result => {
+        res.json(result);
+      }).catch(error => {
+        res.json(error);
+      });
       break;
     case "Turn light off":
-      res.json(smartthing.light("off"));
+      smartthing.light("off").then(result => {
+        res.json(result);
+      }).catch(error => {
+        res.json(error);
+      });
       break;
     case "Change light color":
-      res.json(smartthing.light("",parameters.color));
+      smartthing.light("",parameters.color).then(result => {
+        res.json(result);
+      }).catch(error => {
+        res.json(error);
+      });
+      break;
     default:
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
   }
@@ -29,5 +42,8 @@ exports.jarvis = (req, res) => {
 }; // end Jarvis
 
 // local testing
-//console.log(smartthing.light("off"));
-//console.log(smartthing.light("","white"));
+// smartthing.light("off").then(result => {
+//   console.log(result);
+// }).catch(error => {
+//   console.error(error);
+// });
