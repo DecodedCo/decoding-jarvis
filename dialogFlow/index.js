@@ -59,6 +59,9 @@ exports.jarvis = (req, res) => {
 // smartthing.sonos("playTrack","x-sonos-spotify:spotify%3atrack%3a7GhIk7Il098yCjg4BQjzvb?sid=12&flags=8224&sn=1").then(result => {
 //   console.log(result);
 // });
+// smartthing.sonos("status").then(result => {
+//   console.log(result);
+// });
 // smartthing.outlet("off").then(result => {
 //   console.log(result);
 // });

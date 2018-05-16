@@ -96,27 +96,37 @@ exports.sonos = (command, value) => {
 
     var capability = 'musicPlayer', fulfillmentText, argument = value ? [ value ] : null;
 
-    switch (command) {
-      case "setLevel":
-        fulfillmentText = `Setting volume to ${value}`;
-        break;
-      case "play":
-        fulfillmentText = `Playing`;
-        break;
-      case "pause":
-        fulfillmentText = `Pausing`;
-        break;
-      case "playTrack":
-        fulfillmentText = `Playing your song`;
-        break;
-    }
-    console.log(device, capability, command, argument);
-    commandSmartThings(device, capability, command, argument).then( () => {
-      resolve ({ 'fulfillmentText': fulfillmentText });
-    }).catch((error) => {
-      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
-    }); // end smartThings
-  
+    if (command == 'status') {
+      SmartThingsStatus(device, capability).then( (status) => {
+        status = JSON.parse(status);
+        //console.log(status);
+        // todo - add what's currently playing
+        resolve({ 'fulfillmentText':`Music is ${status.status.value}. Player is at volume ${status.level.value}`})
+      });
+    } else {
+      switch (command) {
+        case "setLevel":
+          fulfillmentText = `Setting volume to ${value}`;
+          break;
+        case "play":
+          fulfillmentText = `Playing`;
+          break;
+        case "pause":
+          fulfillmentText = `Pausing`;
+          break;
+        case "playTrack":
+          fulfillmentText = `Playing your song`; // todo: add song name &c.
+          break;
+      }
+      
+      commandSmartThings(device, capability, command, argument).then( () => {
+        resolve ({ 'fulfillmentText': fulfillmentText });
+      }).catch((error) => {
+        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+      }); // end smartThings
+    
+    } // end if status
+
   }); // end Promise
 
 }; // end sonos
