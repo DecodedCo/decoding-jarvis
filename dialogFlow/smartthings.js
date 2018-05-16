@@ -53,7 +53,7 @@ exports.lock = (value) => {
     
     const device = 'e57898a4-426f-49d1-a97f-7fa67adad155'; // which lock
     var fulfillmentText = (value == "lock") ? "Locking the door" : "Unlocking the door";
-    
+
     commandSmartThings(device, "lock", value).then( () => {
       resolve ({ 'fulfillmentText': fulfillmentText });
     }).catch((error) => {
@@ -62,7 +62,40 @@ exports.lock = (value) => {
   
   }); // end Promise
 
-}; // end light
+}; // end lock
+
+exports.sonos = (command, value) => {
+
+  return new Promise((resolve, reject) => {
+    
+    const device = '3439a3e1-65b1-48e2-85a5-93c005e37431'; // which sonos
+
+    var capability = 'musicPlayer', fulfillmentText, argument = value ? [ value ] : null;
+
+    switch (command) {
+      case "setLevel":
+        fulfillmentText = `Setting volume to ${value}`;
+        break;
+      case "play":
+        fulfillmentText = `Playing`;
+        break;
+      case "pause":
+        fulfillmentText = `Pausing`;
+        break;
+      case "playTrack":
+        fulfillmentText = `Playing your song`;
+        break;
+    }
+    console.log(device, capability, command, argument);
+    commandSmartThings(device, capability, command, argument).then( () => {
+      resolve ({ 'fulfillmentText': fulfillmentText });
+    }).catch((error) => {
+      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+    }); // end smartThings
+  
+  }); // end Promise
+
+}; // end sonos
 
 function commandSmartThings (device, capability, command, argument = null) {
 
@@ -84,6 +117,7 @@ function commandSmartThings (device, capability, command, argument = null) {
     }
 
     let body = JSON.stringify(payload);
+    //console.log(body);
 
     let options = {
       host: host,
