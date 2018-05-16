@@ -97,6 +97,23 @@ exports.sonos = (command, value) => {
 
 }; // end sonos
 
+exports.outlet = (command) => {
+
+  return new Promise((resolve, reject) => {
+    
+    const device = 'af5d6818-f6e8-4e20-b71d-e26fed516e5f'; // which outlet
+    var fulfillmentText = (command == "on") ? "Turning on the outlet" : "Turning off the outlet";
+
+    commandSmartThings(device, "switch", command).then( () => {
+      resolve ({ 'fulfillmentText': fulfillmentText });
+    }).catch((error) => {
+      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+    }); // end smartThings
+  
+  }); // end Promise
+
+}; // end outlet
+
 function commandSmartThings (device, capability, command, argument = null) {
 
   return new Promise((resolve, reject) => {
