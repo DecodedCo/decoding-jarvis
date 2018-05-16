@@ -5,6 +5,7 @@
 'use strict';
 
 const smartthing = require('./smartthings.js');
+const spotify = require('./spotify.js');
 
 exports.jarvis = (req, res) => {
 
@@ -69,6 +70,13 @@ exports.jarvis = (req, res) => {
 // });
 // smartthing.sonos("status").then(result => {
 //   console.log(result);
+// });
+// spotify.search("Justin Bieber","artist").then(result => {
+//   smartthing.sonos("playTrack",result).then(result => {
+//     console.log(result);
+//   });
+// }).catch( error => {
+//   console.error(error);
 // });
 
 // smartthing.outlet("off").then(result => {

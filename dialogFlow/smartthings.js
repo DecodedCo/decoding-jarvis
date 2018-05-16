@@ -115,7 +115,8 @@ exports.sonos = (command, value) => {
           fulfillmentText = `Pausing`;
           break;
         case "playTrack":
-          fulfillmentText = `Playing your song`; // todo: add song name &c.
+          fulfillmentText = `Playing ${value.name}`;
+          argument = [ value.sonosUri ];
           break;
       }
       

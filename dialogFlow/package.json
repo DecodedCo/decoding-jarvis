@@ -1,0 +1,14 @@
+{
+  "name": "dialogflow",
+  "version": "1.0.0",
+  "description": "`gcloud init`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-spotify-api": "^1.0.7"
+  }
+}
