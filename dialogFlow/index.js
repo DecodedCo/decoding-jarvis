@@ -62,3 +62,6 @@ exports.jarvis = (req, res) => {
 // smartthing.outlet("off").then(result => {
 //   console.log(result);
 // });
+// smartthing.lock("status").then(result => {
+//   console.log(result);
+// });

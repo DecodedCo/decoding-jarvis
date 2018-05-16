@@ -19,17 +19,17 @@ exports.light = (capability, value) => {
     const colors = require('./colors.js');
 
     if (value == 'status') { // return value
-      SmartThingsStatus(device, capability).then( (value) => {
-        value = JSON.parse(value);
+      SmartThingsStatus(device, capability).then( (status) => {
+        status = JSON.parse(status);
         switch (capability) {
           case "switchLevel":
-            resolve(`The light is at ${value.level.value}%`);
+            resolve({ 'fulfillmentText': `The light is at ${status.level.value}%` });
             break;
           case "switch":
-            resolve(`The light is ${value.switch.value}`);
+            resolve({ 'fulfillmentText': `The light is ${status.switch.value}` });
             break;
           case "colorControl":
-            resolve(`The light has a hue of ${value.hue.value} and a saturation of ${value.saturation.value}`);
+            resolve({ 'fulfillmentText': `The light has a hue of ${status.hue.value} and a saturation of ${status.saturation.value}` });
             break;
         }
       });
@@ -67,14 +67,23 @@ exports.lock = (value) => {
   return new Promise((resolve, reject) => {
     
     const device = 'e57898a4-426f-49d1-a97f-7fa67adad155'; // which lock
+    const capability = 'lock';
     var fulfillmentText = (value == "lock") ? "Locking the door" : "Unlocking the door";
 
-    commandSmartThings(device, "lock", value).then( () => {
-      resolve ({ 'fulfillmentText': fulfillmentText });
-    }).catch((error) => {
-      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
-    }); // end smartThings
+    if (value == 'status') { // return value
+      SmartThingsStatus(device, capability).then( status => {
+        status = JSON.parse(status);
+        resolve({ 'fulfillmentText': `The door is ${status.lock.value}` });
+      });
+    } else {
+
+      commandSmartThings(device, capability, value).then( () => {
+        resolve ({ 'fulfillmentText': fulfillmentText });
+      }).catch((error) => {
+        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+      }); // end smartThings
   
+    }
   }); // end Promise
 
 }; // end lock
