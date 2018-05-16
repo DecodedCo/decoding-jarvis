@@ -40,7 +40,8 @@ exports.jarvis = (req, res) => {
 
 }; // end Jarvis
 
-//local testing
+// Example requests
+
 // smartthing.light("switchLevel",10).then(result => {
 //   console.log(result);
 // });
@@ -50,9 +51,15 @@ exports.jarvis = (req, res) => {
 // smartthing.light("switch","off").then(result => {
 //   console.log(result);
 // });
-// smartthing.lock("unlock").then(result => {
+
+// smartthing.lock("lock").then(result => {
 //   console.log(result);
 // });
+// smartthing.lock("status").then(result => {
+//   console.log(result);
+// });
+
+
 // smartthing.sonos("pause").then(result => {
 //   console.log(result);
 // });
@@ -62,12 +69,10 @@ exports.jarvis = (req, res) => {
 // smartthing.sonos("status").then(result => {
 //   console.log(result);
 // });
+
 // smartthing.outlet("off").then(result => {
 //   console.log(result);
 // });
-smartthing.outlet("status").then(result => {
-  console.log(result);
-});
-// smartthing.lock("status").then(result => {
+// smartthing.outlet("status").then(result => {
 //   console.log(result);
 // });
