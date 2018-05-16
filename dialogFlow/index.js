@@ -25,12 +25,12 @@ exports.jarvis = (req, res) => {
       });
       break;
     case "Change light color":
-      smartthing.light("color",parameters.color).then(result => {
+      smartthing.light("colorControl",parameters.color).then(result => {
         res.json(result);
       });
       break;
     case "Change brightness":
-      smartthing.light("brightness",parameters.brightness).then(result => {
+      smartthing.light("switchLevel",parameters.brightness).then(result => {
         res.json(result);
       });
       break;    
@@ -41,7 +41,13 @@ exports.jarvis = (req, res) => {
 }; // end Jarvis
 
 //local testing
-// smartthing.light("brightness",10).then(result => {
+// smartthing.light("switchLevel",10).then(result => {
+//   console.log(result);
+// });
+// smartthing.light("colorControl","status").then(result => {
+//   console.log(result);
+// });
+// smartthing.light("switch","off").then(result => {
 //   console.log(result);
 // });
 // smartthing.lock("unlock").then(result => {

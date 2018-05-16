@@ -18,31 +18,46 @@ exports.light = (capability, value) => {
     var command, argument;
     const colors = require('./colors.js');
 
-    switch (capability) {
-      case "switch":
-        command = value;
-        fulfillmentText = `Turning the light ${command}`;
-        break;
-      case "color":
-        capability = 'colorControl';
-        command = 'setColor';
-        argument = colors.tohs(value);
-        fulfillmentText = `Turning the light ${value}`;
-        break;
-      case "brightness":
-        capability = 'switchLevel';
-        command = 'setLevel';
-        argument = [ value ];
-        fulfillmentText = `Setting brightness to ${value}`;
-        break;
-    }
+    if (value == 'status') { // return value
+      SmartThingsStatus(device, capability).then( (value) => {
+        value = JSON.parse(value);
+        switch (capability) {
+          case "switchLevel":
+            resolve(`The light is at ${value.level.value}%`);
+            break;
+          case "switch":
+            resolve(`The light is ${value.switch.value}`);
+            break;
+          case "colorControl":
+            resolve(`The light has a hue of ${value.hue.value} and a saturation of ${value.saturation.value}`);
+            break;
+        }
+      });
+    } else {
+      switch (capability) {
+        case "switch":
+          command = value;
+          fulfillmentText = `Turning the light ${command}`;
+          break;
+        case "colorControl":
+          command = 'setColor';
+          argument = colors.tohs(value);
+          fulfillmentText = `Turning the light ${value}`;
+          break;
+        case "switchLevel":
+          command = 'setLevel';
+          argument = [ value ];
+          fulfillmentText = `Setting brightness to ${value}`;
+          break;
+      }
 
-    commandSmartThings(device, capability, command, argument).then( () => {
-      resolve ({ 'fulfillmentText': fulfillmentText });
-    }).catch((error) => {
-      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
-    }); // end smartThings
-  
+      commandSmartThings(device, capability, command, argument).then( () => {
+        resolve ({ 'fulfillmentText': fulfillmentText });
+      }).catch((error) => {
+        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+      }); // end commandSmartThings
+    } // end if status or command
+
   }); // end Promise
 
 }; // end light
@@ -118,7 +133,7 @@ function commandSmartThings (device, capability, command, argument = null) {
 
   return new Promise((resolve, reject) => {
 
-    let path = '/v1/devices/' + device + '/commands';
+    let path = `/v1/devices/${device}/commands`;
     let payload = {
       "commands": [
         {
@@ -163,6 +178,44 @@ function commandSmartThings (device, capability, command, argument = null) {
     });
 
     request.write(body);
+    request.end();
+
+  }); // end Promise
+} // end commandSmartThings
+
+function SmartThingsStatus (device, capability) {
+
+  return new Promise((resolve, reject) => {
+
+    let path = `/v1/devices/${device}/components/main/capabilities/${capability}/status`;
+
+    let options = {
+      host: host,
+      path: path,
+      headers: {
+        'Authorization': 'Bearer: ' + token
+      },
+      method: 'GET'
+    } // end options
+
+    const request = https.request(options, function(res) {
+
+      let body = '';
+      if (res.statusCode != '200') {
+        resolve(`Error calling the Smarthings API: Status ${res.statusCode}`);
+      }
+      res.on('data', (d) => { body += d; });
+      res.on('end', () => {
+        resolve(body); // this needs to be formatted
+      });
+    }); // end request
+
+    request.on('error', (error) => {
+      console.log(`Error calling the Smarthings API: ${error}`)
+      resolve(`Error calling the Smarthings API: ${error}`);
+    });
+
+    request.end();
 
   }); // end Promise
 } // end commandSmartThings
