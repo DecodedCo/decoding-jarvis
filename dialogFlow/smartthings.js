@@ -62,22 +62,22 @@ exports.light = (capability, value) => {
 
 }; // end light
 
-exports.lock = (value) => {
+exports.lock = (command) => {
 
   return new Promise((resolve, reject) => {
     
     const device = 'e57898a4-426f-49d1-a97f-7fa67adad155'; // which lock
     const capability = 'lock';
-    var fulfillmentText = (value == "lock") ? "Locking the door" : "Unlocking the door";
+    var fulfillmentText = (command == "lock") ? "Locking the door" : "Unlocking the door";
 
-    if (value == 'status') { // return value
+    if (command == 'status') { // return value
       SmartThingsStatus(device, capability).then( status => {
         status = JSON.parse(status);
         resolve({ 'fulfillmentText': `The door is ${status.lock.value}` });
       });
     } else {
 
-      commandSmartThings(device, capability, value).then( () => {
+      commandSmartThings(device, capability, command).then( () => {
         resolve ({ 'fulfillmentText': fulfillmentText });
       }).catch((error) => {
         resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
@@ -136,14 +136,23 @@ exports.outlet = (command) => {
   return new Promise((resolve, reject) => {
     
     const device = 'af5d6818-f6e8-4e20-b71d-e26fed516e5f'; // which outlet
+    const capability = 'switch';
     var fulfillmentText = (command == "on") ? "Turning on the outlet" : "Turning off the outlet";
 
-    commandSmartThings(device, "switch", command).then( () => {
-      resolve ({ 'fulfillmentText': fulfillmentText });
-    }).catch((error) => {
-      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
-    }); // end smartThings
-  
+    if (command == 'status') { // return value
+      SmartThingsStatus(device, capability).then( status => {
+        status = JSON.parse(status);
+        resolve({ 'fulfillmentText': `The outlet is ${status.switch.value}` });
+      });
+    } else {
+      commandSmartThings(device, capability, command).then( () => {
+        resolve ({ 'fulfillmentText': fulfillmentText });
+      }).catch((error) => {
+        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+      }); // end smartThings
+
+    } // end if status
+
   }); // end Promise
 
 }; // end outlet
