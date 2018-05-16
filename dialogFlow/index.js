@@ -45,10 +45,11 @@ exports.jarvis = (req, res) => {
 // smartthing.light("switchLevel",10).then(result => {
 //   console.log(result);
 // });
-// smartthing.light("colorControl","status").then(result => {
+// smartthing.light("switch","off").then(result => {
 //   console.log(result);
 // });
-// smartthing.light("switch","off").then(result => {
+// The light status applies to each capability:
+// smartthing.light("colorControl","status").then(result => {
 //   console.log(result);
 // });
 
