@@ -44,3 +44,6 @@ exports.jarvis = (req, res) => {
 // smartthing.light("brightness",10).then(result => {
 //   console.log(result);
 // });
+// smartthing.lock("unlock").then(result => {
+//   console.log(result);
+// });

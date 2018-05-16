@@ -47,6 +47,23 @@ exports.light = (capability, value) => {
 
 }; // end light
 
+exports.lock = (value) => {
+
+  return new Promise((resolve, reject) => {
+    
+    const device = 'e57898a4-426f-49d1-a97f-7fa67adad155'; // which lock
+    var fulfillmentText = (value == "lock") ? "Locking the door" : "Unlocking the door";
+    
+    commandSmartThings(device, "lock", value).then( () => {
+      resolve ({ 'fulfillmentText': fulfillmentText });
+    }).catch((error) => {
+      resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+    }); // end smartThings
+  
+  }); // end Promise
+
+}; // end light
+
 function commandSmartThings (device, capability, command, argument = null) {
 
   return new Promise((resolve, reject) => {
