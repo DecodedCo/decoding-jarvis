@@ -9,25 +9,32 @@ const host = 'api.smartthings.com';
 const token = '8cfc63f8-e342-4607-9797-09ee094b2970';
 var fulfillmentText;
 
-exports.light = (state, color = null) => {
+exports.light = (capability, value) => {
 
   return new Promise((resolve, reject) => {
-
-    const colors = require('./colors.js');
     
     const device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
-    var capability, command, argument;
 
-    if (!color) {
-      capability = 'switch';
-      command = state; // on or off
-      argument = null;
-      fulfillmentText = `Turning the light ${state}`;
-    } else {
-      capability = 'colorControl';
-      command = 'setColor';
-      argument = colors.tohs(color);
-      fulfillmentText = `Turning the light ${color}`;
+    var command, argument;
+    const colors = require('./colors.js');
+
+    switch (capability) {
+      case "switch":
+        command = value;
+        fulfillmentText = `Turning the light ${command}`;
+        break;
+      case "color":
+        capability = 'colorControl';
+        command = 'setColor';
+        argument = colors.tohs(value);
+        fulfillmentText = `Turning the light ${value}`;
+        break;
+      case "brightness":
+        capability = 'switchLevel';
+        command = 'setLevel';
+        argument = [ value ];
+        fulfillmentText = `Setting brightness to ${value}`;
+        break;
     }
 
     commandSmartThings(device, capability, command, argument).then( () => {
