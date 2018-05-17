@@ -44,6 +44,9 @@ exports.jarvis = (req, res) => {
       }).catch( error => {
         res.json(error);
       });    
+      break;
+    case "Show camera image":
+      res.json(nest.camera());
       break;  
     default:
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
@@ -101,7 +104,10 @@ exports.jarvis = (req, res) => {
 // nest.thermostat("status").then( result => {
 //   console.log(result);
 // });
-
 // nest.thermostat("set",50).then( result => {
 //   console.log(result);
 // });
+
+// nest.camera().then( camera => {
+//   console.log(camera);
+// })
