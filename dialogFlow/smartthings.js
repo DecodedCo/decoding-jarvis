@@ -7,13 +7,21 @@
 const https = require('https');
 const host = 'api.smartthings.com';
 const token = '8cfc63f8-e342-4607-9797-09ee094b2970';
+const devices = {
+  'light' : 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e',
+  'lock' : 'e57898a4-426f-49d1-a97f-7fa67adad155',
+  'sonos' : '3439a3e1-65b1-48e2-85a5-93c005e37431',
+  'outlet' : 'af5d6818-f6e8-4e20-b71d-e26fed516e5f',
+  'motion' : 'f483d05a-712b-4e63-bfb6-322245c3f2e6'
+}
+
 var fulfillmentText;
 
 exports.light = (capability, value) => {
 
   return new Promise((resolve, reject) => {
     
-    const device = 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e'; // which light
+    const device = devices.light; // which light
 
     var command, argument;
     const colors = require('./colors.js');
@@ -66,7 +74,7 @@ exports.lock = (command) => {
 
   return new Promise((resolve, reject) => {
     
-    const device = 'e57898a4-426f-49d1-a97f-7fa67adad155'; // which lock
+    const device = devices.lock; // which lock
     const capability = 'lock';
     var fulfillmentText = (command == "lock") ? "Locking the door" : "Unlocking the door";
 
@@ -92,7 +100,7 @@ exports.sonos = (command, value) => {
 
   return new Promise((resolve, reject) => {
     
-    const device = '3439a3e1-65b1-48e2-85a5-93c005e37431'; // which sonos
+    const device = devices.sonos; // which sonos
 
     var capability = 'musicPlayer', fulfillmentText, argument = value ? [ value ] : null;
 
@@ -135,7 +143,7 @@ exports.outlet = (command) => {
 
   return new Promise((resolve, reject) => {
     
-    const device = 'af5d6818-f6e8-4e20-b71d-e26fed516e5f'; // which outlet
+    const device = devices.outlet; // which outlet
     const capability = 'switch';
     var fulfillmentText = (command == "on") ? "Turning on the outlet" : "Turning off the outlet";
 
@@ -161,7 +169,7 @@ exports.motion = () => {
 
   return new Promise((resolve, reject) => {
     
-    const device = 'f483d05a-712b-4e63-bfb6-322245c3f2e6'; // which sensor
+    const device = devices.motion; // which sensor
     var capability = 'motionSensor';
 
     SmartThingsStatus(device, capability).then( (status) => {
