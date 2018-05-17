@@ -99,7 +99,6 @@ exports.sonos = (command, value) => {
     if (command == 'status') {
       SmartThingsStatus(device, capability).then( (status) => {
         status = JSON.parse(status);
-        //console.log(status);
         // todo - add what's currently playing
         resolve({ 'fulfillmentText':`Music is ${status.status.value}. Player is at volume ${status.level.value}`})
       });

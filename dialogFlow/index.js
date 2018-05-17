@@ -35,6 +35,15 @@ exports.jarvis = (req, res) => {
         res.json(result);
       });
       break;    
+    case "Play an artist":
+      spotify.search(parameters['music-artist'],"artist").then(result => {
+        smartthing.sonos("playTrack",result).then(result => {
+          res.json(result);
+        });
+      }).catch( error => {
+        res.json(error);
+      });    
+      break;  
     default:
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
   }
@@ -43,7 +52,7 @@ exports.jarvis = (req, res) => {
 
 // Example requests
 
-// smartthing.light("switchLevel",10).then(result => {
+// smartthing.light("switchLevel",100).then(result => {
 //   console.log(result);
 // });
 // smartthing.light("switch","off").then(result => {
@@ -71,13 +80,17 @@ exports.jarvis = (req, res) => {
 // smartthing.sonos("status").then(result => {
 //   console.log(result);
 // });
-// spotify.search("Justin Bieber","artist").then(result => {
+// spotify.search("Britney Spears","artist").then(result => {
 //   smartthing.sonos("playTrack",result).then(result => {
 //     console.log(result);
 //   });
 // }).catch( error => {
 //   console.error(error);
 // });
+// smartthing.sonos("setLevel",10).then(result => {
+//   console.log(result);
+// });
+
 
 // smartthing.outlet("off").then(result => {
 //   console.log(result);

@@ -57,7 +57,7 @@ exports.search = (search,type) => {
 
             switch (type) {
               case "playlist":
-                sonosUri = `x-rincon-cpcontainer:0006206c${items[0].id}`;
+                sonosUri = `x-rincon-cpcontainer:0006206c${items[0].id}`; //todo: fix
                 break;
               case "album":
                 sonosUri = `x-rincon-cpcontainer:0004206c${items[0].id}`;
