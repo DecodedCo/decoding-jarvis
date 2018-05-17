@@ -90,7 +90,8 @@ function topTrack(artistId) {
     spotify
       .request(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=${country}`)
       .then(function(data) {
-        resolve(data.tracks[0]); 
+        let tracks = shuffle(data.tracks);
+        resolve(tracks[0]); 
       })
       .catch(function(err) {
         reject('Error occurred: ' + err); 
@@ -99,3 +100,11 @@ function topTrack(artistId) {
   }); // end Promise
 
 } // end topTrack
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}

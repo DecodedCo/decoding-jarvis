@@ -45,6 +45,20 @@ exports.jarvis = (req, res) => {
         res.json(error);
       });    
       break;
+    case "Change volume":
+      let amount = parameters['unit-volume'];
+      switch (amount) {
+        case "up":
+          // todo
+          break;
+        case "down":
+          // todo
+          break;
+        default:
+          smartthing.sonos("setLevel", amount).then(result => {
+            res.json(result);
+          });
+      }
     case "Show camera image":
       res.json(nest.camera());
       break;  
@@ -84,14 +98,14 @@ exports.jarvis = (req, res) => {
 // smartthing.sonos("status").then(result => {
 //   console.log(result);
 // });
-// spotify.search("Britney Spears","artist").then(result => {
+// spotify.search("Churches","artist").then(result => {
 //   smartthing.sonos("playTrack",result).then(result => {
 //     console.log(result);
 //   });
 // }).catch( error => {
 //   console.error(error);
 // });
-// smartthing.sonos("setLevel",50).then(result => {
+// smartthing.sonos("setLevel",35).then(result => {
 //   console.log(result);
 // });
 // smartthing.outlet("off").then(result => {
