@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-spotify-api": "^1.0.7"
+    "node-spotify-api": "^1.0.7",
+    "unofficial-nest-api": "^0.1.4"
   }
 }

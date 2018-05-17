@@ -6,6 +6,7 @@
 
 const smartthing = require('./smartthings.js');
 const spotify = require('./spotify.js');
+const nest = require('./nest.js');
 
 exports.jarvis = (req, res) => {
 
@@ -87,14 +88,20 @@ exports.jarvis = (req, res) => {
 // }).catch( error => {
 //   console.error(error);
 // });
-// smartthing.sonos("setLevel",10).then(result => {
+// smartthing.sonos("setLevel",50).then(result => {
 //   console.log(result);
 // });
-
-
 // smartthing.outlet("off").then(result => {
 //   console.log(result);
 // });
 // smartthing.outlet("status").then(result => {
+//   console.log(result);
+// });
+
+// nest.thermostat("status").then( result => {
+//   console.log(result);
+// });
+
+// nest.thermostat("set",50).then( result => {
 //   console.log(result);
 // });
