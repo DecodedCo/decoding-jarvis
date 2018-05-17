@@ -111,3 +111,7 @@ exports.jarvis = (req, res) => {
 // nest.camera().then( camera => {
 //   console.log(camera);
 // })
+
+// smartthing.motion().then(result => {
+//   console.log(result);
+// })

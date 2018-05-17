@@ -157,6 +157,22 @@ exports.outlet = (command) => {
 
 }; // end outlet
 
+exports.motion = () => {
+
+  return new Promise((resolve, reject) => {
+    
+    const device = 'f483d05a-712b-4e63-bfb6-322245c3f2e6'; // which sensor
+    var capability = 'motionSensor';
+
+    SmartThingsStatus(device, capability).then( (status) => {
+      status = JSON.parse(status);
+      resolve({ 'fulfillmentText':`Motion sensor is ${status.motion.value}.`})
+    }); // end Status
+
+  }); // end Promise
+
+} // end motion
+
 function commandSmartThings (device, capability, command, argument = null) {
 
   return new Promise((resolve, reject) => {
