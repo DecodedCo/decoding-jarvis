@@ -1,32 +1,17 @@
 {
-  "name": "decoding-jarvis",
+  "name": "dialogflow",
   "version": "1.0.0",
-  "description": "Jarvis AI chatbot app ",
+  "description": "`gcloud init`",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DecodedCo/decoding-jarvis.git"
-  },
-  "keywords": [
-    "ai",
-    "iot"
-  ],
-  "author": "Decoded",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DecodedCo/decoding-jarvis/issues"
-  },
-  "homepage": "https://github.com/DecodedCo/decoding-jarvis#readme",
   "dependencies": {
-    "apiai": "^4.0.3",
-    "express": "^4.16.3",
+    "fitbit-node": "^2.1.0",
+    "node-nest-cams": "0.0.2",
     "node-spotify-api": "^1.0.7",
-    "nodemon": "^1.17.4",
-    "request": "^2.85.0",
-    "socket.io": "^2.1.0"
+    "unofficial-nest-api": "^0.1.4"
   }
 }
