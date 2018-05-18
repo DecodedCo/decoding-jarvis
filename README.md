@@ -227,3 +227,11 @@ fitbit.steps().then( result => { // today
 });
 
 ```
+
+### Chromecast
+
+From a local network (or bridge via VPN), you can play any media on a chromecast detected on the network.
+
+Update `chromecast-local.js` with the `contentId` of your content.
+
+Run using `node chromecast-local.js`.
