@@ -2,13 +2,13 @@
 
 // Thermostat
 const nest = require('unofficial-nest-api');
-const username = 'jarvis@decoded.com';
-const password = 'HxkDl68DL7Pe';
+const username = '';
+const password = '';
 const unit = 'f'; // c or f
 
 // Camera
 // Manually generate this url by running nest-generate-url.js once
-const nestcamUri = 'https://www.dropcam.com/api/wwn.get_snapshot/CjZDWmgtU3VfdHNLSjFSNGp3UTYzZmJJM2JOOHdybEFDMXB3ek1fUG51MmdlYnNILUhiSC1XNGcSFkNEdjNUTFNrU0prSU9nU2xUeERJbGcaNms5djlRZ1RXMVlvWVpJRHhjejhiQmlISnJDRTVPSGRHSF9ldklveDZwZkdnbVg4ZzhsclM2dw?auth=076RsgyEMjNCrTSoSMC5CrPNSSgORDYdO0lygeBv_JAz9duoZsWOAE1z7ZlxwxwCLceqczDOD_xpqukD0q_-k0YJqowKLhQHpfvjeVWLocwurIcFgcpgWa3iJyYeO3peMzIOB0OjW7apjEEfpMDPEIhMNutB0KyDFtqS5Q903DBS6KSOE1nOcrsrPYQwBwEInwW2Hulq_OrpsI';
+const nestcamUri = '';
 
 exports.thermostat = (command, value) => {
   

@@ -6,13 +6,13 @@
 
 const https = require('https');
 const host = 'api.smartthings.com';
-const token = '8cfc63f8-e342-4607-9797-09ee094b2970';
+const token = '';
 const devices = {
-  'light' : 'eeb62d1e-ae4d-4124-ae65-f42c97134e2e',
-  'lock' : 'e57898a4-426f-49d1-a97f-7fa67adad155',
-  'sonos' : '3439a3e1-65b1-48e2-85a5-93c005e37431',
-  'outlet' : 'af5d6818-f6e8-4e20-b71d-e26fed516e5f',
-  'motion' : 'f483d05a-712b-4e63-bfb6-322245c3f2e6'
+  'light' : '',
+  'lock' : '',
+  'sonos' : '',
+  'outlet' : '',
+  'motion' : ''
 }
 
 var fulfillmentText;

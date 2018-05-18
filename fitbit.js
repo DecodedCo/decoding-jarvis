@@ -2,11 +2,12 @@
 
 const FitbitApiClient = require("fitbit-node");
 
-// manually generate token from https://dev.fitbit.com/apps/oauthinteractivetutorial
+// From https://dev.fitbit.com/apps/oauthinteractivetutorial
 
-const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2S1RWMjMiLCJhdWQiOiIyMkNXWTQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTI2Njg2ODA2LCJpYXQiOjE1MjY2NTgwMDZ9.TJbHLqTb16aOW04_2Tg1dMnCM-oflr-u3mCF1PmSjak';
+const accessToken = '';
 
-const client = new FitbitApiClient({clientId: "22CWY4", clientSecret: "7f4f7ab89c15dac152dd5da0283e555c", apiVersion: "1.2"});
+// From https://dev.fitbit.com/apps
+const client = new FitbitApiClient({clientId: "", clientSecret: "", apiVersion: "1.2"});
 
 exports.profile = () => {
   return new Promise((resolve, reject) => {

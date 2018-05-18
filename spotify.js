@@ -3,11 +3,71 @@
 var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify({
-  id: '80502d9b8d8a49679a0d9f8f11eb82f1',
-  secret: '20d1e37a024d4b42b3bb04c9260d750d'
+  id: '',
+  secret: ''
 });
 
 var country = 'us'; // todo - update search to reflect this
+
+exports.searchv2 = (search) => {
+
+  // Sonos settings:
+
+  let sid = 12; // from sniffing status - hard coded :(
+  let sn = 1; // ditto from sniffing
+  
+  return new Promise((resolve, reject) => {
+ 
+    spotify
+      .search({ type: 'artist,album,track,playlist', query: search, limit: 1 })
+      .then(function(response) {
+        if (response.tracks.items[0]) {
+          let item = response.tracks.items[0];
+          let name = item.name;
+          let spotifyUri = encodeURIComponent(item.uri);
+          let sonosUri = `x-sonos-spotify:${spotifyUri}?sid=${sid}&flags=8224&sn=${sn}`;
+
+          resolve({'name' : name, 'sonosUri' : sonosUri});
+        } else {
+          reject("Nothing found.");
+        }
+
+      })
+      .catch(function(err) {
+        reject(err);
+      });
+
+  }); // end Promise
+
+} // end searchSpotifyv2
+
+function topTrack(artistId) {
+
+  return new Promise((resolve, reject) => {
+
+    spotify
+      .request(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=${country}`)
+      .then(function(data) {
+        let tracks = shuffle(data.tracks);
+        resolve(tracks[0]); 
+      })
+      .catch(function(err) {
+        reject('Error occurred: ' + err); 
+      });
+
+  }); // end Promise
+
+} // end topTrack
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// Deprecated
 
 exports.search = (search,type) => {
 
@@ -82,61 +142,3 @@ exports.search = (search,type) => {
   }); // end Promise
 
 } // end searchSpotify
-
-exports.searchv2 = (search) => {
-
-  // Sonos settings:
-
-  let sid = 12; // from sniffing status - hard coded :(
-  let sn = 1; // ditto from sniffing
-  
-  return new Promise((resolve, reject) => {
- 
-    spotify
-      .search({ type: 'artist,album,track,playlist', query: search, limit: 1 })
-      .then(function(response) {
-        if (response.tracks.items[0]) {
-          let item = response.tracks.items[0];
-          let name = item.name;
-          let spotifyUri = encodeURIComponent(item.uri);
-          let sonosUri = `x-sonos-spotify:${spotifyUri}?sid=${sid}&flags=8224&sn=${sn}`;
-
-          resolve({'name' : name, 'sonosUri' : sonosUri});
-        } else {
-          reject("Nothing found.");
-        }
-
-      })
-      .catch(function(err) {
-        reject(err);
-      });
-
-  }); // end Promise
-
-} // end searchSpotifyv2
-
-function topTrack(artistId) {
-
-  return new Promise((resolve, reject) => {
-
-    spotify
-      .request(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=${country}`)
-      .then(function(data) {
-        let tracks = shuffle(data.tracks);
-        resolve(tracks[0]); 
-      })
-      .catch(function(err) {
-        reject('Error occurred: ' + err); 
-      });
-
-  }); // end Promise
-
-} // end topTrack
-
-function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-}

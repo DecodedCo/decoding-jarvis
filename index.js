@@ -17,61 +17,11 @@ exports.jarvis = (req, res) => {
   console.log(`Processing ${intent}`,parameters);
 
   switch (intent) {
-    case "Turn light on":
-      smartthing.light("switch","on").then(result => {
-        res.json(result);
-      });
+    case "Your intent here":
+      // process intent
+      res.json({'fulfillmentText':'This is the response based on your request'});
       break;
-    case "Turn light off":
-      smartthing.light("switch","off").then(result => {
-        res.json(result);
-      });
-      break;
-    case "Change light color":
-      smartthing.light("colorControl",parameters.color).then(result => {
-        res.json(result);
-      });
-      break;
-    case "Change brightness":
-      smartthing.light("switchLevel",parameters.brightness).then(result => {
-        res.json(result);
-      });
-      break;   
-    case "Play music":
-      spotify.searchv2(parameters.music).then(result => {
-        smartthing.sonos("playTrack",result).then(result => {
-          res.json(result);
-        });
-      }).catch( error => {
-        res.json({'fulfillmentText':`Whoops - ${error}`});
-      });
-      break;    
-    case "Change volume":
-      let amount = parameters.number;
-      if (!amount) {
-        res.json({'fulfillmentText':'Hmm no volume amount was shared with me'});
-      } else {
-        switch (amount) {
-          case "up":
-            res.json({'fulfillmentText':'I\'m learning how to do that.'})
-            // todo
-            break;
-          case "down":
-            // todo
-            res.json({'fulfillmentText':'I\'m learning how to do that.'})
-            break;
-          default:
-            smartthing.sonos("setLevel", amount).then(result => {
-              res.json(result);
-            });
-            break;
-        } // end switch amount
-      } // end if amount
-      break;
-    case "Show camera image":
-      res.json(nest.camera());
-      break;  
-    default:
+    default: // unrecognised intent
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
       break;
   }
