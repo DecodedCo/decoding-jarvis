@@ -83,6 +83,38 @@ exports.search = (search,type) => {
 
 } // end searchSpotify
 
+exports.searchv2 = (search) => {
+
+  // Sonos settings:
+
+  let sid = 12; // from sniffing status - hard coded :(
+  let sn = 1; // ditto from sniffing
+  
+  return new Promise((resolve, reject) => {
+ 
+    spotify
+      .search({ type: 'artist,album,track,playlist', query: search, limit: 1 })
+      .then(function(response) {
+        if (response.tracks.items[0]) {
+          let item = response.tracks.items[0];
+          let name = item.name;
+          let spotifyUri = encodeURIComponent(item.uri);
+          let sonosUri = `x-sonos-spotify:${spotifyUri}?sid=${sid}&flags=8224&sn=${sn}`;
+
+          resolve({'name' : name, 'sonosUri' : sonosUri});
+        } else {
+          reject("Nothing found.");
+        }
+
+      })
+      .catch(function(err) {
+        reject(err);
+      });
+
+  }); // end Promise
+
+} // end searchSpotifyv2
+
 function topTrack(artistId) {
 
   return new Promise((resolve, reject) => {
