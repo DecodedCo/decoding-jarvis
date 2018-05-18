@@ -1,19 +1,29 @@
-## Setup
+# Jarvis Dialogflow Webhook Library
 
-`gcloud init`
+This library provides fuctionality for integrating a variety of IoT devices with Dialogflow.
 
-Choose the correct project.
+## Supported Devices
 
-Go into project settings (web) and find the bucket name for below
+1. Nest Camera
+2. Nest Thermostat
+3. Samsung Smarthings Hub
+4. Samsung Smarthings Power Outlet
+5. Samsung Smarthings Motion Sensor
+6. Silvania Smart Bulb (through Samsung Smarthings)
+7. Fitbit
+8. Sonos (through Samsung Smarthings and Spotify)
+9. Yale Lock (through Samsung Smarthings)
+
+## Prerequisites
+
+1. You have completed https://dialogflow.com/docs/getting-started/building-your-first-agent
+2. You have created a new agent and are ready to deploy a new webhook
 
 ## Deploy
 
-`gcloud beta functions deploy jarvis --stage-bucket staging.jarvis-ab47a.appspot.com --trigger-http`
+This library provides a `jarvis` function to act as the fulfillment webhook. Deploy the webhook as per the tutorial above.
 
-## Logs
-
-`gcloud beta functions logs read`
-
+## 
 
 // Example requests
 
