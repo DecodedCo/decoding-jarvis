@@ -59,7 +59,8 @@ var celsiusToFahrenheit = function (c) {
 
 exports.camera = () => {
 
-  return({ fulfillmentMessages: [
+  return({ 
+    "fulfillmentMessages": [
           {
             "image": {
               "imageUri" : nestcamUri

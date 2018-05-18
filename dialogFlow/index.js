@@ -47,7 +47,7 @@ exports.jarvis = (req, res) => {
       });    
       break;
     case "Change volume":
-      let amount = parameters.volume;
+      let amount = parameters.number;
       if (!amount) {
         res.json({'fulfillmentText':'Hmm no volume amount was shared with me'});
       } else {
@@ -132,9 +132,7 @@ exports.jarvis = (req, res) => {
 //   console.log(result);
 // });
 
-// nest.camera().then( camera => {
-//   console.log(camera);
-// })
+//console.log(nest.camera());
 
 // smartthing.motion().then(result => {
 //   console.log(result);
