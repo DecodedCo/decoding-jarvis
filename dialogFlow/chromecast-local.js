@@ -23,7 +23,8 @@ function ondeviceup(host) {
       var media = {
 
       	// Here you can plug an URL to any mp4, webm, mp3 or jpg file with the proper contentType.
-        contentId: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4',
+        //contentId: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4',
+        contentId: 'https://home.nest.com/348361e1-b502-40a8-bf9a-8a7da2bb08a9',
         contentType: 'video/mp4',
         streamType: 'BUFFERED', // or LIVE
 
@@ -39,13 +40,15 @@ function ondeviceup(host) {
       };
 
       player.on('status', function(status) {
-        console.log('status broadcast playerState=%s', status.playerState);
+        console.log(status);
+        //console.log('status broadcast playerState=%s', status.playerState);
       });
 
-      console.log('app "%s" launched, loading media %s ...', player.session.displayName, media.contentId);
+      //console.log('app "%s" launched, loading media %s ...', player.session.displayName, media.contentId);
 
       player.load(media, { autoplay: true }, function(err, status) {
-        console.log('media loaded playerState=%s', status.playerState);
+        //console.log('media loaded playerState=%s', status.playerState);
+        console.log(status);
 
         // Seek to 2 minutes after 15 seconds playing.
         setTimeout(function() {

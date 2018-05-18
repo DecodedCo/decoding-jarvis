@@ -49,21 +49,25 @@ exports.jarvis = (req, res) => {
       let amount = parameters['unit-volume'];
       switch (amount) {
         case "up":
+          res.json({'fulfillmentText':'I\'m learning how to do that.'})
           // todo
           break;
         case "down":
           // todo
+          res.json({'fulfillmentText':'I\'m learning how to do that.'})
           break;
         default:
           smartthing.sonos("setLevel", amount).then(result => {
             res.json(result);
           });
+          break;
       }
     case "Show camera image":
       res.json(nest.camera());
       break;  
     default:
       res.json({'fulfillmentText':'I\'m sorry, I can\'t do that.'});
+      break;
   }
 
 }; // end Jarvis
