@@ -7,6 +7,7 @@
 const smartthing = require('./smartthings.js');
 const spotify = require('./spotify.js');
 const nest = require('./nest.js');
+const fitbit = require('./fitbit.js');
 
 exports.jarvis = (req, res) => {
 
@@ -46,22 +47,27 @@ exports.jarvis = (req, res) => {
       });    
       break;
     case "Change volume":
-      let amount = parameters['unit-volume'];
-      switch (amount) {
-        case "up":
-          res.json({'fulfillmentText':'I\'m learning how to do that.'})
-          // todo
-          break;
-        case "down":
-          // todo
-          res.json({'fulfillmentText':'I\'m learning how to do that.'})
-          break;
-        default:
-          smartthing.sonos("setLevel", amount).then(result => {
-            res.json(result);
-          });
-          break;
-      }
+      let amount = parameters.volume;
+      if (!amount) {
+        res.json({'fulfillmentText':'Hmm no volume amount was shared with me'});
+      } else {
+        switch (amount) {
+          case "up":
+            res.json({'fulfillmentText':'I\'m learning how to do that.'})
+            // todo
+            break;
+          case "down":
+            // todo
+            res.json({'fulfillmentText':'I\'m learning how to do that.'})
+            break;
+          default:
+            smartthing.sonos("setLevel", amount).then(result => {
+              res.json(result);
+            });
+            break;
+        } // end switch amount
+      } // end if amount
+      break;
     case "Show camera image":
       res.json(nest.camera());
       break;  
@@ -109,7 +115,7 @@ exports.jarvis = (req, res) => {
 // }).catch( error => {
 //   console.error(error);
 // });
-// smartthing.sonos("setLevel",35).then(result => {
+// smartthing.sonos("setLevel",60).then(result => {
 //   console.log(result);
 // });
 // smartthing.outlet("off").then(result => {
@@ -131,5 +137,9 @@ exports.jarvis = (req, res) => {
 // })
 
 // smartthing.motion().then(result => {
+//   console.log(result);
+// })
+
+// fitbit.steps('2018-5-16').then( result => {
 //   console.log(result);
 // })

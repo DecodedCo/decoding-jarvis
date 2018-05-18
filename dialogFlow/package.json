@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fitbit-node": "^2.1.0",
     "node-nest-cams": "0.0.2",
     "node-spotify-api": "^1.0.7",
     "unofficial-nest-api": "^0.1.4"
