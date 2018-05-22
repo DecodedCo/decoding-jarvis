@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "28e46991-ef5f-4a40-8400-d52e5cd6525f",
+		"name": "SmartThings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SmartThings - List Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer: 8cfc63f8-e342-4607-9797-09ee094b2970"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://api.smartthings.com/v1/devices",
+					"protocol": "https",
+					"host": [
+						"api",
+						"smartthings",
+						"com"
+					],
+					"path": [
+						"v1",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SmartThings - Check Device Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer: 8cfc63f8-e342-4607-9797-09ee094b2970"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://api.smartthings.com/v1/devices/f483d05a-712b-4e63-bfb6-322245c3f2e6/components/main/capabilities/motionSensor/status",
+					"protocol": "https",
+					"host": [
+						"api",
+						"smartthings",
+						"com"
+					],
+					"path": [
+						"v1",
+						"devices",
+						"f483d05a-712b-4e63-bfb6-322245c3f2e6",
+						"components",
+						"main",
+						"capabilities",
+						"motionSensor",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SmartThings - Send Command to Device",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer: 8cfc63f8-e342-4607-9797-09ee094b2970"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"unlock\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://api.smartthings.com/v1/devices/e57898a4-426f-49d1-a97f-7fa67adad155/commands",
+					"protocol": "https",
+					"host": [
+						"api",
+						"smartthings",
+						"com"
+					],
+					"path": [
+						"v1",
+						"devices",
+						"e57898a4-426f-49d1-a97f-7fa67adad155",
+						"commands"
+					]
+				},
+				"description": "Send a command to a device"
+			},
+			"response": []
+		}
+	]
+}
