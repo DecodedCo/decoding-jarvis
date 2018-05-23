@@ -4,8 +4,8 @@
 const nestcam = require('node-nest-cams');
 
 let nestCamConfig = {
-    productId: '',
-    productSecret: ''
+    productId: process.env.nestCamProductId,
+    productSecret: process.env.nestCamProductSecret
 }
 
 nestcam.setConfig(nestCamConfig);

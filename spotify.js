@@ -3,8 +3,8 @@
 var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify({
-  id: '',
-  secret: ''
+  id: process.env.spotifyId,
+  secret: process.env.spotifySecret
 });
 
 var country = 'us'; // todo - update search to reflect this

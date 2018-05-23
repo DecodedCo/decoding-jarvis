@@ -2,13 +2,13 @@
 
 // Thermostat
 const nest = require('unofficial-nest-api');
-const username = '';
-const password = '';
-const unit = 'f'; // c or f
+const username = process.env.nestUsername;
+const password = process.env.nestPassword;
+const unit = 'c'; // c or f
 
 // Camera
 // Manually generate this url by running nest-generate-url.js once
-const nestcamUri = '';
+const nestcamUri = process.env.nestcamUri;
 
 exports.thermostat = (command, value) => {
   

@@ -4,6 +4,8 @@
 
 'use strict';
 
+require('dotenv').config()
+
 const smartthing = require('./smartthings.js');
 const spotify = require('./spotify.js');
 const nest = require('./nest.js');

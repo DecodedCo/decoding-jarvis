@@ -4,10 +4,10 @@ const FitbitApiClient = require("fitbit-node");
 
 // From https://dev.fitbit.com/apps/oauthinteractivetutorial
 
-const accessToken = '';
+const accessToken = process.env.fitbitAccessToken;
 
 // From https://dev.fitbit.com/apps
-const client = new FitbitApiClient({clientId: "", clientSecret: "", apiVersion: "1.2"});
+const client = new FitbitApiClient({clientId: process.env.fitbitClientId, clientSecret: process.env.fitbitClientSecret, apiVersion: "1.2"});
 
 exports.profile = () => {
   return new Promise((resolve, reject) => {
