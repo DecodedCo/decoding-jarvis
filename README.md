@@ -187,7 +187,7 @@ Check if the motion sensor has been triggered:
 
 ```
 smartthing.motion().then(result => {
-res.json(result);
+	res.json(result);
 })
 ```
 
@@ -235,3 +235,25 @@ From a local network (or bridge via VPN), you can play any media on a chromecast
 Update `chromecast-local.js` with the `contentId` of your content.
 
 Run using `node chromecast-local.js`.
+
+## APIs
+
+### Microsoft Emotion
+
+Load the library:
+
+```
+const microsoft = require('./microsoft.js');
+```
+
+Send the library an image URL, and it will return the raw data which you need to process:
+
+```
+microsoft.emotion(process.env.nestcamUri).then( result => {
+  console.log(result);
+  // Now, process the data as needed...
+  res.json({'fulfillmentText':'Your response message'});
+}).catch( error => {
+  res.json({'fulfillmentText': error});
+})
+```
