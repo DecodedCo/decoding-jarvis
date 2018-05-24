@@ -1,4 +1,4 @@
-var request = require('request')
+var request = require('request');
 
 exports.emotion = (imageUrl) => {
 
@@ -27,6 +27,8 @@ exports.emotion = (imageUrl) => {
         console.log(`${results.length} face(s) detected`);
         if (results.length > 0) {
           resolve(results);
+        } else {
+          reject("No faces found");
         }
       } else { // there was an error
         reject(error);
