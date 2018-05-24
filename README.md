@@ -257,3 +257,9 @@ microsoft.emotion(process.env.nestcamUri).then( result => {
   res.json({'fulfillmentText': error});
 })
 ```
+
+## Testing
+
+Open `test.js` and add any of your code you want to test.
+
+Then, run `node test.js` to test it.
