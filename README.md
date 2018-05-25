@@ -62,6 +62,44 @@ This library provides a `jarvis` function to act as the fulfillment webhook. Dep
 
 For some examples, see `example.js`.
 
+## Rich Messages
+
+To return a rich message containing a picture (and optionally text):
+
+1. Make sure you have imported the utilities first:
+
+`const utils = require('./utils.js');`
+
+2. Add the following code for your final response, updating `IMAGEURL` with your image url:
+
+```
+res.json(utils.imageResponse(IMAGEURL));
+```
+
+or 
+
+```
+res.json(utils.imageResponse(IMAGEURL),"Your text description");
+```
+
+## Defeating third party API caches
+
+Some services (Microsoft) cache URLs for their services - they only check the URL once, rather than checking to see if the contents have changed.
+
+To overcome this limitation, you can generate unique URLs that do not affect the underlying request, but do "trick" the API into reloading the contents.
+
+1. Make sure you have imported the utilities first:
+
+`const utils = require('./utils.js');`
+
+2. Use the following code for your final response, updating `IMAGEURL` with your image url:
+
+`utils.uniqueUrl(IMAGEURL)`
+
+e.g.
+
+`requestAPI(utils.uniqueUrl(process.env.nestcamProxyUri))`
+
 ## Functionality
 
 ### Light Bulb
