@@ -79,7 +79,7 @@ res.json(utils.imageResponse(IMAGEURL));
 or 
 
 ```
-res.json(utils.imageResponse(IMAGEURL),"Your text description");
+res.json(utils.imageResponse(IMAGEURL,"Your text description"));
 ```
 
 ## Defeating third party API caches
