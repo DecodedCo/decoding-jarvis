@@ -11,6 +11,7 @@ const spotify = require('./spotify.js');
 const nest = require('./nest.js');
 const fitbit = require('./fitbit.js');
 const microsoft = require('./microsoft.js');
+const utils = require('./utils.js');
 
 exports.jarvis = (req, res) => {
 
