@@ -11,8 +11,7 @@ const devices = {
   'light' : '028c5658-40c6-4ec3-b386-496a69e20f3a',
   'lock' : '',
   'sonos' : '',
-  'outlet' : '',
-  'motion' : ''
+  'outlet' : ''
 }
 
 var fulfillmentText;
@@ -165,21 +164,6 @@ exports.outlet = (command) => {
 
 }; // end outlet
 
-exports.motion = () => {
-
-  return new Promise((resolve, reject) => {
-    
-    const device = devices.motion; // which sensor
-    var capability = 'motionSensor';
-
-    SmartThingsStatus(device, capability).then( (status) => {
-      status = JSON.parse(status);
-      resolve({ 'fulfillmentText':`Motion sensor is ${status.motion.value}.`})
-    }); // end Status
-
-  }); // end Promise
-
-} // end motion
 
 function commandSmartThings (device, capability, command, argument = null) {
 
