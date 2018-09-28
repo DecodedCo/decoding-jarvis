@@ -8,7 +8,7 @@ const https = require('https');
 const host = 'api.smartthings.com';
 const token = process.env.smartthingsToken;
 const devices = {
-  'light' : '028c5658-40c6-4ec3-b386-496a69e20f3a',
+  'light' : '',
   'lock' : '',
   'sonos' : '',
   'outlet' : ''

@@ -8,12 +8,10 @@ This library provides fuctionality for integrating a variety of IoT devices with
 2. Nest Thermostat
 3. Samsung Smarthings Hub
 4. Samsung Smarthings Power Outlet
-5. Samsung Smarthings Motion Sensor
-6. Silvania Smart Bulb (through Samsung Smarthings)
-7. Fitbit
-8. Sonos (through Samsung Smarthings and Spotify)
-9. Yale Lock (through Samsung Smarthings)
-10. Chromecast (local network only) 
+5. Silvania Smart Bulb (through Samsung Smarthings)
+6. Fitbit
+7. Sonos (through Samsung Smarthings and Spotify)
+8. Yale Lock (through Samsung Smarthings)
 
 ## Prerequisites
 
@@ -22,35 +20,29 @@ This library provides fuctionality for integrating a variety of IoT devices with
 
 ## Setup
 
+Begin by creating a `.env` file with contents shared by the team (privately). If out of date, update its contents as follows:
+
 ### Smartthings
 
-1. Update `smartthings.js` with your Personal Access Token (`token`) from https://account.smartthings.com/tokens and Device Ids (`devices`) from https://api.smartthings.com/v1/devices (called with header `Authorization: Bearer: token`)  
+1. Update `.env` with your Personal Access Token (`smartthingsToken`) from https://account.smartthings.com/tokens.
+2. Update `smartthings.js` with the Device Ids (`devices`) from https://api.smartthings.com/v1/devices (called with header `Authorization: Bearer: smartthingsToken`)
 2. Update `colors.js` with your desired color map if you are using the lightbulb
-
-### Fitbit
-
-3. Update `fitbit.js` with your `clientId` and `clientSecret` from https://dev.fitbit.com/apps and `accessToken` from https://dev.fitbit.com/apps/oauthinteractivetutorial
 
 ### Nest Camera
 
-4. Update `nest-generate-url.js` with the `productId` and `productSecret` from https://console.developers.nest.com/products/a211585b-577a-48d1-993b-90c0d648411a (under Client ID and Client Secret)
-5. Run `node nest-generate-url.js` and update `nest.js` with the `nestcamUri`
+5. Follow the [instructions](https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md) to generate a camera URL and update `nestcamUri` in your `.env` file.
 
 ### Nest Thermostat
 
-6. Update `nest.js` with the `username` and `password` of your Nest account for the thermostat
+6. Update `.env` with the `username` and `password` of your Nest account for the thermostat
 
 ### Spotify
 
-1. Update `spotify.js` with your `id` and `secret` from https://beta.developer.spotify.com/dashboard/applications
+1. Update `.env` with your `spotifyId` and `spotifySecret` from https://beta.developer.spotify.com/dashboard/applications
 
 ### Sonos
 
 1. Update `spotify.js` with the `sid` and `sn` intercepted by querying the Sonos device through the Smartthings API as it is playing a track from the app.
-
-### Chromecast
-
-1. Run `npm install mdns castv2-client` to install dependencies
 
 ## Deploy
 
@@ -219,16 +211,6 @@ smartthing.outlet("off").then(result => { // or on
 });
 ```
 
-### Motion Sensor
-
-Check if the motion sensor has been triggered:
-
-```
-smartthing.motion().then(result => {
-	res.json(result);
-})
-```
-
 ### Nest Thermostat
 
 Check the current and target temperature, and set the target temperature:
@@ -250,29 +232,6 @@ Returns URL for most recent image:
 ```
 res.json(nest.camera());
 ```
-
-### Fitbit
-
-Returns number of steps for a specific date, defaults to today if left blank:
-
-```
-fitbit.steps('2018-05-16').then( result => {
-	res.json(result);
-});
-
-fitbit.steps().then( result => { // today
-	res.json(result);
-});
-
-```
-
-### Chromecast
-
-From a local network (or bridge via VPN), you can play any media on a chromecast detected on the network.
-
-Update `chromecast-local.js` with the `contentId` of your content.
-
-Run using `node chromecast-local.js`.
 
 ## APIs
 
