@@ -9,7 +9,6 @@ This library provides fuctionality for integrating a variety of IoT devices with
 3. Samsung Smarthings Hub
 4. Samsung Smarthings Power Outlet
 5. Silvania Smart Bulb (through Samsung Smarthings)
-6. Fitbit
 7. Sonos (through Samsung Smarthings and Spotify)
 8. Yale Lock (through Samsung Smarthings)
 
@@ -20,7 +19,11 @@ This library provides fuctionality for integrating a variety of IoT devices with
 
 ## Setup
 
-Begin by creating a `.env` file with contents shared by the team (privately). If out of date, update its contents as follows:
+Begin by creating a `.env` file with contents shared by the team (privately). 
+
+Import the Postman collection to manually explore the Smartthings API.
+
+If you need to update your `.env` file:
 
 ### Smartthings
 
