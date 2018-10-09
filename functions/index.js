@@ -71,6 +71,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
   function lockDoor (agent) {
     smartthings.lock("lock").then( result => {
+      agent.add("locking the door");
       agent.add(result);
     })
   }
