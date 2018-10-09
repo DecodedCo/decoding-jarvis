@@ -4,12 +4,14 @@
 
 'use strict';
 
+const functions = require('firebase-functions')
+
 const https = require('https');
 const host = 'api.smartthings.com';
-const token = process.env.smartthingsToken;
+const token = functions.config().smartthings.token;
 const devices = {
-  'light' : '',
-  'lock' : '',
+  'light' :  '5aa3312d-a0c8-4a02-a77f-60f4cbac1ee1',
+  'lock' : '064afc8c-6216-424d-8a82-de9b353fa7ab',
   'sonos' : '',
   'outlet' : ''
 }
@@ -21,22 +23,23 @@ exports.light = (capability, value) => {
   return new Promise((resolve, reject) => {
     
     const device = devices.light; // which light
+    if (!device) resolve("No light specified in my code");
 
     var command, argument;
-    const colors = require('./colors.js');
+    // const colors = require('./colors.js');
 
     if (value == 'status') { // return value
       SmartThingsStatus(device, capability).then( (status) => {
         status = JSON.parse(status);
         switch (capability) {
           case "switchLevel":
-            resolve({ 'fulfillmentText': `The light is at ${status.level.value}%` });
+            resolve(`The light is at ${status.level.value}%`);
             break;
           case "switch":
-            resolve({ 'fulfillmentText': `The light is ${status.switch.value}` });
+            resolve(`The light is ${status.switch.value}`);
             break;
           case "colorControl":
-            resolve({ 'fulfillmentText': `The light has a hue of ${status.hue.value} and a saturation of ${status.saturation.value}` });
+            resolve(`The light has a hue of ${status.hue.value} and a saturation of ${status.saturation.value}`);
             break;
         }
       });
@@ -59,9 +62,9 @@ exports.light = (capability, value) => {
       }
 
       commandSmartThings(device, capability, command, argument).then( () => {
-        resolve ({ 'fulfillmentText': fulfillmentText });
+        resolve (fulfillmentText);
       }).catch((error) => {
-        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+        resolve (error); // want to resolve to minimize code
       }); // end commandSmartThings
     } // end if status or command
 
@@ -74,22 +77,22 @@ exports.lock = (command) => {
   return new Promise((resolve, reject) => {
     
     const device = devices.lock; // which lock
+    if (!device) resolve("No lock specified in my code");
+
     const capability = 'lock';
     var fulfillmentText = (command == "lock") ? "Locking the door" : "Unlocking the door";
 
     if (command == 'status') { // return value
       SmartThingsStatus(device, capability).then( status => {
         status = JSON.parse(status);
-        resolve({ 'fulfillmentText': `The door is ${status.lock.value}` });
+        resolve(`The door is ${status.lock.value}`);
       });
     } else {
-
       commandSmartThings(device, capability, command).then( () => {
-        resolve ({ 'fulfillmentText': fulfillmentText });
+        resolve(fulfillmentText);
       }).catch((error) => {
-        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+        resolve(error); // want to resolve to minimize code
       }); // end smartThings
-  
     }
   }); // end Promise
 
@@ -100,6 +103,7 @@ exports.sonos = (command, value) => {
   return new Promise((resolve, reject) => {
     
     const device = devices.sonos; // which sonos
+    if (!device) resolve("No Sonos specified in my code");
 
     var capability = 'musicPlayer', fulfillmentText, argument = value ? [ value ] : null;
 
@@ -107,7 +111,7 @@ exports.sonos = (command, value) => {
       SmartThingsStatus(device, capability).then( (status) => {
         status = JSON.parse(status);
         // todo - add what's currently playing
-        resolve({ 'fulfillmentText':`Music is ${status.status.value}. Player is at volume ${status.level.value}`})
+        resolve(`Music is ${status.status.value}. Player is at volume ${status.level.value}`)
       });
     } else {
       switch (command) {
@@ -127,9 +131,9 @@ exports.sonos = (command, value) => {
       }
       
       commandSmartThings(device, capability, command, argument).then( () => {
-        resolve ({ 'fulfillmentText': fulfillmentText });
+        resolve (fulfillmentText);
       }).catch((error) => {
-        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+        resolve (error); // want to resolve to minimize code
       }); // end smartThings
     
     } // end if status
@@ -143,19 +147,21 @@ exports.outlet = (command) => {
   return new Promise((resolve, reject) => {
     
     const device = devices.outlet; // which outlet
+    if (!device) resolve("No outlet specified in my code");
+
     const capability = 'switch';
     var fulfillmentText = (command == "on") ? "Turning on the outlet" : "Turning off the outlet";
 
     if (command == 'status') { // return value
       SmartThingsStatus(device, capability).then( status => {
         status = JSON.parse(status);
-        resolve({ 'fulfillmentText': `The outlet is ${status.switch.value}` });
+        resolve(`The outlet is ${status.switch.value}`);
       });
     } else {
       commandSmartThings(device, capability, command).then( () => {
-        resolve ({ 'fulfillmentText': fulfillmentText });
+        resolve (fulfillmentText);
       }).catch((error) => {
-        resolve ({ 'fulfillmentText': error }); // want to resolve to minimize code
+        resolve (error); // want to resolve to minimize code
       }); // end smartThings
 
     } // end if status
@@ -185,8 +191,7 @@ function commandSmartThings (device, capability, command, argument = null) {
     }
 
     let body = JSON.stringify(payload);
-    //console.log(body);
-
+    console.log("body",body);
     let options = {
       host: host,
       path: path,
@@ -196,14 +201,17 @@ function commandSmartThings (device, capability, command, argument = null) {
       },
       method: 'POST'
     } // end options
+    console.log("options", options);
+    
 
     const request = https.request(options, function(res) {
       let body = '';
       if (res.statusCode != '200') {
         reject(`Error calling the Smarthings API: Status ${res.statusCode}`);
       }
-      res.on('data', (d) => { body += d; });
+      res.on('data', (d) => { body += d; console.log(body); });
       res.on('end', () => {
+        console.log("End",body);
         resolve(body);
       });
     }); // end request

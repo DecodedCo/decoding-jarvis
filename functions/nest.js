@@ -2,13 +2,14 @@
 
 // Thermostat
 const nest = require('unofficial-nest-api');
-const username = process.env.nestUsername;
-const password = process.env.nestPassword;
+const functions = require('firebase-functions')
+const username = functions.config().nest.username;
+const password = functions.config().nest.username;
 const unit = 'c'; // c or f
 
 // Camera
-// Manually generate this url by running nest-generate-url.js once
-const nestcamUri = process.env.nestcamUri;
+// Manually generate this url by following https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md
+const nestcamUri = functions.config().nest.uri;
 
 exports.thermostat = (command, value) => {
   
@@ -34,12 +35,12 @@ exports.thermostat = (command, value) => {
               currentTemp = (unit == 'c') ? currentTemp.toFixed(1) : celsiusToFahrenheit(currentTemp);
               targetTemp = (unit == 'c') ? targetTemp.toFixed(1) : celsiusToFahrenheit(targetTemp);
 
-              resolve({'fulfillmentText': `Current temperature is ${currentTemp} with a target temperature of ${targetTemp}` });
+              resolve(`Current temperature is ${currentTemp} with a target temperature of ${targetTemp}`);
               break;
             case "set":
               targetTemp = (value > 45) ? fahrenheitToCelsius(value) : value; // needs to be C
               nest.setTemperature(nestId, targetTemp);
-              resolve({'fulfillmentText': `Setting temperature to ${value}`});
+              resolve(`Setting temperature to ${value}`);
               break;
           } // end switch
 
@@ -59,13 +60,6 @@ var celsiusToFahrenheit = function (c) {
 
 exports.camera = () => {
 
-  return({ 
-    "fulfillmentMessages": [
-          {
-            "image": {
-              "imageUri" : nestcamUri
-            }
-          }] 
-        }); // end return
+  return(nestcamUri); // end return
 
 }; // end camera
