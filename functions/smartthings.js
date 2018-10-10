@@ -4,14 +4,14 @@
 
 'use strict';
 
-const functions = require('firebase-functions')
+const functions = require('firebase-functions');
 
 const https = require('https');
 const host = 'api.smartthings.com';
 const token = functions.config().smartthings.token;
 const devices = {
-  'light' :  '5aa3312d-a0c8-4a02-a77f-60f4cbac1ee1',
-  'lock' : '064afc8c-6216-424d-8a82-de9b353fa7ab',
+  'light' :  '',
+  'lock' : '',
   'sonos' : '',
   'outlet' : ''
 }
@@ -191,7 +191,7 @@ function commandSmartThings (device, capability, command, argument = null) {
     }
 
     let body = JSON.stringify(payload);
-    console.log("body",body);
+
     let options = {
       host: host,
       path: path,
@@ -200,18 +200,15 @@ function commandSmartThings (device, capability, command, argument = null) {
         'Content-Length': Buffer.byteLength(body)
       },
       method: 'POST'
-    } // end options
-    console.log("options", options);
-    
+    } // end options    
 
     const request = https.request(options, function(res) {
       let body = '';
       if (res.statusCode != '200') {
         reject(`Error calling the Smarthings API: Status ${res.statusCode}`);
       }
-      res.on('data', (d) => { body += d; console.log(body); });
+      res.on('data', (d) => { body += d; });
       res.on('end', () => {
-        console.log("End",body);
         resolve(body);
       });
     }); // end request

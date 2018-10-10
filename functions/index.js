@@ -42,14 +42,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   function turnOnLight (agent) {
     agent.add("Turning the lights on");
     smartthings.light("switch","on").then(result => {
-      agent.add(result);
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
     });
   }
 
   function turnOffLight (agent) {
     agent.add("Turning the lights off");
     smartthings.light("switch","off").then(result => {
-      agent.add(result);
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
     });
   }
 
@@ -70,10 +70,31 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 
   function lockDoor (agent) {
+    agent.add("Locking the door...");
     smartthings.lock("lock").then( result => {
-      agent.add("locking the door");
-      agent.add(result);
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+    });
+  }
+
+  function unlockDoor (agent) {
+    agent.add("Unlocking the door...");
+    smartthings.lock("unlock").then( result => {
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
     })
+  }
+
+  function turnOnOutlet(agent) {
+    agent.add("Switching on outlet...");
+    smartthings.outlet("on").then(result => {
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+    });
+  }
+
+  function turnOffOutlet(agent) {
+    agent.add("Switching off outlet...");
+    smartthings.outlet("off").then(result => {
+      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+    });
   }
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
@@ -81,7 +102,10 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   intentMap.set('Default Fallback Intent', fallback);
   intentMap.set('Turn on light',turnOnLight);
   intentMap.set('Turn off light',turnOffLight);
+  intentMap.set('Turn on outlet', turnOnOutlet)
+  intentMap.set('Turn off outlet', turnOffOutlet);;
   intentMap.set('Show camera',showCamera);
   intentMap.set('Lock door',lockDoor);
+  intentMap.set('Unlock door',unlockDoor);
   agent.handleRequest(intentMap);
 });

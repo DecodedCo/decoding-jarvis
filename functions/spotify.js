@@ -1,7 +1,7 @@
 'use strict';
 
 const Spotify = require('node-spotify-api');
-const functions = require('firebase-functions')
+const functions = require('firebase-functions');
 
 const spotify = new Spotify({
   id: functions.config().spotify.id,

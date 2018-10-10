@@ -2,7 +2,8 @@
 
 // Thermostat
 const nest = require('unofficial-nest-api');
-const functions = require('firebase-functions')
+const functions = require('firebase-functions');
+
 const username = functions.config().nest.username;
 const password = functions.config().nest.username;
 const unit = 'c'; // c or f
