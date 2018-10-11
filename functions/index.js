@@ -26,6 +26,7 @@ const nest = require('./nest.js');
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+
   const agent = new WebhookClient({ request, response });
   console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
@@ -54,13 +55,19 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 
   function playMusic (agent) {
-    // todo: bring in parameters
-    spotify.searchv2(parameters.music).then(result => {
+    let music = request.body.queryResult.parameters['music']; 
+    console.log("Going to play", music); // passed through as a parameter
+    agent.add(`Looking for ${music}`);
+    spotify.searchv2(music).then(result => {
+      console.log("Spotify found", result)
+      agent.add("Playing a song for you");
       smartthings.sonos("playTrack",result).then(result => {
-        res.json(result);
+        console.log("Sending", result, "to Sonos");
+        agent.add("Song should be playing now!");
+        agent.add(result);
       });
     }).catch( error => {
-      res.json({'fulfillmentText':`Whoops - ${error}`});
+      res.json(`Whoops - ${error}`);
     });
   }
 
@@ -99,7 +106,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set('Default Welcome Intent', welcome);
-  intentMap.set('Default Fallback Intent', fallback);
+  intentMap.set('Default fallbackback Intent', fallback);
   intentMap.set('Turn on light',turnOnLight);
   intentMap.set('Turn off light',turnOffLight);
   intentMap.set('Turn on outlet', turnOnOutlet)
@@ -107,5 +114,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   intentMap.set('Show camera',showCamera);
   intentMap.set('Lock door',lockDoor);
   intentMap.set('Unlock door',unlockDoor);
+  intentMap.set('Play music',playMusic);
   agent.handleRequest(intentMap);
 });
