@@ -43,64 +43,67 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   function turnOnLight (agent) {
     agent.add("Turning the lights on");
     smartthings.light("switch","on").then(result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     });
   }
 
   function turnOffLight (agent) {
     agent.add("Turning the lights off");
     smartthings.light("switch","off").then(result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     });
   }
 
   function playMusic (agent) {
     let music = request.body.queryResult.parameters['music']; 
     console.log("Going to play", music); // passed through as a parameter
-    agent.add(`Looking for ${music}`);
+    agent.add(`Playing ${music}...`);
     spotify.searchv2(music).then(result => {
-      console.log("Spotify found", result)
-      agent.add("Playing a song for you");
       smartthings.sonos("playTrack",result).then(result => {
-        console.log("Sending", result, "to Sonos");
-        agent.add("Song should be playing now!");
-        agent.add(result);
+        agent.add(result); // this does not return quickly enough
+        console.log(result);
       });
     }).catch( error => {
-      res.json(`Whoops - ${error}`);
+      agent.add(`Whoops - ${error}`);
+      console.log(error);
     });
   }
 
   function showCamera (agent) {
-    agent.add("Sharing live camera URL:")
     agent.add(new Image(nest.camera()));
   }
 
   function lockDoor (agent) {
     agent.add("Locking the door...");
     smartthings.lock("lock").then( result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     });
   }
 
   function unlockDoor (agent) {
     agent.add("Unlocking the door...");
     smartthings.lock("unlock").then( result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     })
   }
 
   function turnOnOutlet(agent) {
     agent.add("Switching on outlet...");
     smartthings.outlet("on").then(result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     });
   }
 
   function turnOffOutlet(agent) {
     agent.add("Switching off outlet...");
     smartthings.outlet("off").then(result => {
-      agent.add(result); // for some reason this is not returning when smartthings API is called, but returns if no device is defined
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
     });
   }
   // Run the proper function handler based on the matched Dialogflow intent name
