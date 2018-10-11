@@ -57,6 +57,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     });
   }
 
+  function turnLightRed (agent) {
+    agent.add("Turning light red");
+    smartthings.light("colorControl","red").then(result => { // defined in colors.js
+      agent.add(result); // this does not return quickly enough
+      console.log(result);
+    });
+  }
+
   function playMusic (agent) {
     let music = request.body.queryResult.parameters['music']; 
     console.log("Going to play", music); // passed through as a parameter
@@ -113,6 +121,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   intentMap.set('Default fallbackback Intent', fallback);
   intentMap.set('Turn on light',turnOnLight);
   intentMap.set('Turn off light',turnOffLight);
+  intentMap.set('Turn light red',turnLightRed);
   intentMap.set('Turn on outlet', turnOnOutlet)
   intentMap.set('Turn off outlet', turnOffOutlet);;
   intentMap.set('Show camera',showCamera);

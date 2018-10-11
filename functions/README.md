@@ -16,7 +16,7 @@ This library provides fuctionality for integrating a variety of IoT devices with
 
 First, create an agent and deploy this library following instructions at https://github.com/DecodedCo/decoding-jarvis
 
-### Smartthings
+### smartthings.
 
 1. Obtain your Personal Access Token (`token`) from https://account.smartthings.com/tokens.
 2. Set the environment variable for your deployment: `firebase functions:config:set smartthings.token="TOKEN"`
@@ -38,7 +38,7 @@ First, create an agent and deploy this library following instructions at https:/
 
 ### Sonos
 
-1. Update `spotify.js` with the `sid` and `sn` intercepted by querying the Sonos device through the Smartthings API as it is playing a track from the app.
+1. Update `spotify.js` with the `sid` and `sn` intercepted by querying the Sonos device through the smartthings. API as it is playing a track from the app.
 
 ## Defeating third party API caches
 
@@ -67,11 +67,11 @@ e.g.
 Get status and switch on or off:
 
 ```
-smartthing.light("switch","status").then(result => {
+smartthings.light("switch","status").then(result => {
   agent.add(result);
 });
 
-smartthing.light("switch","off").then(result => { // or on
+smartthings.light("switch","off").then(result => { // or on
   agent.add(result);
 });
 ```
@@ -81,11 +81,11 @@ smartthing.light("switch","off").then(result => { // or on
 Get current brightness and set the brightness (0-100):
 
 ```
-smartthing.light("switchLevel","status").then(result => { // 0-100
+smartthings.light("switchLevel","status").then(result => { // 0-100
   agent.add(result);
 });
 
-smartthing.light("switchLevel",100).then(result => { // 0-100
+smartthings.light("switchLevel",100).then(result => { // 0-100
   agent.add(result);
 });
 ```
@@ -95,11 +95,11 @@ smartthing.light("switchLevel",100).then(result => { // 0-100
 Get current hue and saturation, and set the color based on the mapping in `colors.js`:
 
 ```
-smartthing.light("colorControl","status").then(result => {
+smartthings.light("colorControl","status").then(result => {
   agent.add(result);
 });
 
-smartthing.light("colorControl","red").then(result => { // defined in colors.js
+smartthings.light("colorControl","red").then(result => { // defined in colors.js
   agent.add(result);
 });
 
@@ -110,11 +110,11 @@ smartthing.light("colorControl","red").then(result => { // defined in colors.js
 Check the lock status and lock/unlock:
 
 ```
-smartthing.lock("status").then(result => {
+smartthings.lock("status").then(result => {
   agent.add(result);
 });
 
-smartthing.lock("lock").then(result => { // or unlock
+smartthings.lock("lock").then(result => { // or unlock
   agent.add(result);
 });
 ```
@@ -124,7 +124,7 @@ smartthing.lock("lock").then(result => { // or unlock
 Check what's currently playing:
 
 ```
-smartthing.outlet("status").then(result => {
+smartthings.outlet("status").then(result => {
   agent.add(result);
 });
 ```
@@ -134,7 +134,7 @@ smartthing.outlet("status").then(result => {
 Play/pause the current track:
 
 ```
-smartthing.sonos("pause").then(result => { // or play
+smartthings.sonos("pause").then(result => { // or play
   agent.add(result);
 });
 ```
@@ -144,7 +144,7 @@ smartthing.sonos("pause").then(result => { // or play
 Set the volume (0-100):
 
 ```
-smartthing.sonos("setLevel",60).then(result => { // 0-100
+smartthings.sonos("setLevel",60).then(result => { // 0-100
   agent.add(result);
 });
 ```
@@ -155,7 +155,7 @@ You can search for a track, artist or album, and pass the result onto Sonos:
 
 ```
 spotify.searchv2("The Beatles").then(result => {
-  smartthing.sonos("playTrack",result).then(result => {
+  smartthings.sonos("playTrack",result).then(result => {
     agent.add(result);
   });
 }).catch( error => {
@@ -168,11 +168,11 @@ spotify.searchv2("The Beatles").then(result => {
 Check status and switch on/off:
 
 ```
-smartthing.outlet("status").then(result => {
+smartthings.outlet("status").then(result => {
   agent.add(result);
 });
 
-smartthing.outlet("off").then(result => { // or on
+smartthings.outlet("off").then(result => { // or on
   agent.add(result);
 });
 ```
@@ -182,7 +182,7 @@ smartthing.outlet("off").then(result => { // or on
 Check if the motion sensor has been triggered:
 
 ```
-smartthing.motion().then(result => {
+smartthings.motion().then(result => {
   agent.add(result);
 })
 ```
