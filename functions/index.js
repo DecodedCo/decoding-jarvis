@@ -22,6 +22,7 @@ const {Card, Suggestion, Image} = require('dialogflow-fulfillment');
 const smartthings = require('./smartthings.js');
 const spotify = require('./spotify.js');
 const nest = require('./nest.js');
+const utils = require('./utils.js');
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 

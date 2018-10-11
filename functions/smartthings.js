@@ -26,7 +26,7 @@ exports.light = (capability, value) => {
     if (!device) resolve("No light specified in my code");
 
     var command, argument;
-    // const colors = require('./colors.js');
+    const colors = require('./colors.js');
 
     if (value == 'status') { // return value
       SmartThingsStatus(device, capability).then( (status) => {
