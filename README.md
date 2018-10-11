@@ -1,8 +1,8 @@
-# Dialogflow Fulfillment Webhook Template for Node.js and Cloud Functions for Firebase
+# Dialogflow Fulfillment Webhook Library Jarvisv2
 
-This webhook template sets up everything needed to build fulfillment for your Dialogflow agent.
+This webhook template sets up everything needed to deploy fulfillment for your Dialogflow Jarvis agent.
 
-### Option 1: Firebase CLI
+### Firebase CLI
 1. Create [Dialogflow Agent](https://console.dialogflow.com/)
 2. `git@github.com:DecodedCo/decoding-jarvis.git`
 3. `cd` to the `functions` directory
