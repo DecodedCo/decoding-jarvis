@@ -87,7 +87,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest(
     }
 
     function showCamera(agent) {
-      agent.add(new Image(nest.camera()));
+      agent.add(new Image(nest.camera("e")));
     }
 
     function lockDoor(agent) {

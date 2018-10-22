@@ -8,9 +8,7 @@ const username = functions.config().nest.username;
 const password = functions.config().nest.username;
 const unit = "c"; // c or f
 
-// Camera
-// Manually generate this url by following https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md
-const nestcamUri = functions.config().nest.uri;
+// Camera setup below
 
 exports.thermostat = (command, value) => {
   var nestId, targetTemp;
@@ -65,6 +63,9 @@ var celsiusToFahrenheit = function(c) {
   return Math.round(c * (9 / 5.0) + 32.0);
 };
 
-exports.camera = () => {
-  return nestcamUri; // end return
+// Camera
+// Manually generate this url by following https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md
+
+exports.camera = (label) => {
+  return functions.config().nest[label].uri; // end return
 }; // end camera
