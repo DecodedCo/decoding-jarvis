@@ -11,6 +11,7 @@ This webhook template sets up everything needed to deploy fulfillment for your D
 6. Login with your Google account, `firebase login`
 7. Add your project to the sample with $ `firebase use <project ID>`
   + In Dialogflow console under **Settings** ⚙ > **General** tab > copy **Project ID**.
+8. Run `npm run lint` to check your code. Optionally run `npm run autolint` to autocorrect any errors found.
 8. Run `firebase deploy --only functions:dialogflowFirebaseFulfillment`
 9. When successfully deployed, visit the **Project Console** link > **Functions** > **Dashboard**
   + Copy the link under the events column. For example: `https://us-central1-<PROJECTID>.cloudfunctions.net/<FUNCTIONNAME>`
