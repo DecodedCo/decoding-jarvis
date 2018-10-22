@@ -13,8 +13,8 @@ var country = "us"; // todo - update search to reflect this
 exports.searchv2 = search => {
   // Sonos settings:
 
-  let sid = 9; // from sniffing status - hard coded :(
-  let sn = 14; // ditto from sniffing using Postman
+  let sid = 12; // from sniffing status - hard coded :(
+  let sn = 2; // ditto from sniffing using Postman
 
   return new Promise((resolve, reject) => {
     spotify

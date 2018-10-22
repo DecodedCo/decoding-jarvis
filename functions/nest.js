@@ -66,6 +66,6 @@ var celsiusToFahrenheit = function(c) {
 // Camera
 // Manually generate this url by following https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md
 
-exports.camera = (label) => {
+exports.camera = label => {
   return functions.config().nest[label].uri; // end return
 }; // end camera
