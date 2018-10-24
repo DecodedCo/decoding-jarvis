@@ -15,7 +15,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -52,7 +52,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -89,7 +89,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -127,7 +127,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -160,7 +160,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -197,7 +197,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -234,7 +234,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -271,7 +271,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -313,7 +313,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -346,7 +346,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -379,7 +379,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -416,7 +416,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -458,7 +458,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -491,7 +491,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -524,7 +524,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -557,7 +557,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							}
 						],
 						"body": {},
@@ -590,7 +590,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -627,7 +627,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -664,7 +664,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -701,7 +701,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer: TOKEN"
+								"value": "Bearer: {{TOKEN}}"
 							},
 							{
 								"key": "Content-Type",
@@ -740,7 +740,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer: TOKEN"
+						"value": "Bearer: {{TOKEN}}"
 					}
 				],
 				"body": {},
@@ -767,7 +767,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer: TOKEN"
+						"value": "Bearer: {{TOKEN}}"
 					}
 				],
 				"body": {},
@@ -795,7 +795,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer: TOKEN"
+						"value": "Bearer: {{TOKEN}}"
 					},
 					{
 						"key": "Content-Type",
@@ -832,7 +832,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer: TOKEN"
+						"value": "Bearer: {{TOKEN}}"
 					}
 				],
 				"body": {},
