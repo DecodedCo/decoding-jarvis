@@ -206,7 +206,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"playTrack\",\n    \"arguments\": [\"x-sonos-spotify:spotify%3atrack%3a7GhIk7Il098yCjg4BQjzvb?sid=12&flags=8224&sn=1\"]\n    }\n  ]\n}"
+							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"playTrack\",\n    \"arguments\": [\"x-sonos-spotify:spotify:track:7GhIk7Il098yCjg4BQjzvb?sid=12&flags=8224&sn=1\"]\n    }\n  ]\n}"
 						},
 						"url": {
 							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
