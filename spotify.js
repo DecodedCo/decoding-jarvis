@@ -1,11 +1,10 @@
 "use strict";
 
 const Spotify = require("node-spotify-api");
-const functions = require("firebase-functions");
 
 const spotify = new Spotify({
-  id: functions.config().spotify.id,
-  secret: functions.config().spotify.secret,
+  id: process.env.spotify_id,
+  secret: process.env.spotify_secret,
 });
 
 var country = "us"; // todo - update search to reflect this
