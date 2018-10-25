@@ -10,6 +10,7 @@ const smartthings = require("./smartthings.js");
 const spotify = require("./spotify.js");
 const nest = require("./nest.js");
 const utils = require("./utils.js");
+const microsoft = require("./microsoft.js");
 
 let app = express();
 
@@ -32,46 +33,72 @@ app.post("/", (request, response) => {
   }
 
   function turnOnLight(agent) {
-    agent.add("Turning the lights on");
-    smartthings.light("switch", "on").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.light("switch", "on").then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
     });
   }
 
   function turnOffLight(agent) {
-    agent.add("Turning the lights off");
-    smartthings.light("switch", "off").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.light("switch", "off").then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
+    });
+  }
+
+  function setBrightness(agent) {
+    return new Promise((resolve, reject) => {
+      let number = request.body.queryResult.parameters["number"];
+      if (!number) {
+        agent.add("Error: no number specified");
+        resolve();        
+      } else {
+        smartthings.light("switchLevel", number).then(result => {
+          agent.add(result);
+          console.log(result);
+          resolve();
+        });
+      }
     });
   }
 
   function turnLightRed(agent) {
-    agent.add("Turning light red");
-    smartthings.light("colorControl", "red").then(result => {
-      // defined in colors.js
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.light("colorControl", "red").then(result => {
+        // defined in colors.js
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
     });
   }
 
   function playMusic(agent) {
-    let music = request.body.queryResult.parameters["music"];
-    agent.add(`Playing ${music}...`);
-    console.log("Going to play", music); // passed through as a parameter
-    spotify
-      .searchv2(music)
-      .then(result => {
-        smartthings.sonos("playTrack", result).then(result => {
-          agent.add(result); // this does not return quickly enough
-          console.log(result);
+    return new Promise((resolve, reject) => {
+      let music = request.body.queryResult.parameters["music"];
+      agent.add(`Trying to play ${music}...`);
+      console.log(`Trying to play ${music}`);
+      spotify
+        .searchv2(music)
+        .then(result => {
+          smartthings.sonos("playTrack", result).then(result => {
+            agent.add(result);
+            console.log(result);
+            resolve();
+          });
+        })
+        .catch(error => {
+          agent.add(`Whoops - ${error}`);
+          console.log(error);
+          resolve();
         });
-      })
-      .catch(error => {
-        agent.add(`Whoops - ${error}`);
-        console.log(error);
-      });
+    });
   }
 
   function showCamera(agent) {
@@ -79,34 +106,43 @@ app.post("/", (request, response) => {
   }
 
   function lockDoor(agent) {
-    agent.add("Locking the door...");
-    smartthings.lock("lock").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.lock("lock").then(result => {
+        agent.add(result); // this does not return quickly enough
+        console.log(result);
+        resolve();
+      });
     });
   }
 
   function unlockDoor(agent) {
-    agent.add("Unlocking the door...");
-    smartthings.lock("unlock").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.lock("unlock").then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
     });
   }
 
   function turnOnOutlet(agent) {
-    agent.add("Switching on outlet...");
-    smartthings.outlet("on").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.outlet("on").then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
     });
   }
 
   function turnOffOutlet(agent) {
-    agent.add("Switching off outlet...");
-    smartthings.outlet("off").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      agent.add("Switching off outlet...");
+      smartthings.outlet("off").then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
     });
   }
   // Run the proper function handler based on the matched Dialogflow intent name
@@ -115,6 +151,7 @@ app.post("/", (request, response) => {
   intentMap.set("Default fallbackback Intent", fallback);
   intentMap.set("Turn on light", turnOnLight);
   intentMap.set("Turn off light", turnOffLight);
+  intentMap.set("Set brightness", setBrightness);
   intentMap.set("Turn light red", turnLightRed);
   intentMap.set("Turn on outlet", turnOnOutlet);
   intentMap.set("Turn off outlet", turnOffOutlet);
