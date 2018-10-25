@@ -57,7 +57,7 @@ app.post("/", (request, response) => {
       let number = request.body.queryResult.parameters["number"];
       if (!number) {
         agent.add("Error: no number specified");
-        resolve();        
+        resolve();
       } else {
         smartthings.light("switchLevel", number).then(result => {
           agent.add(result);
