@@ -9,6 +9,7 @@ const { Card, Suggestion, Image } = require("dialogflow-fulfillment");
 const smartthings = require("./smartthings.js");
 const spotify = require("./spotify.js");
 const nest = require("./nest.js");
+const microsoft = require("./microsoft.js");
 const utils = require("./utils.js");
 
 let app = express();
