@@ -102,7 +102,7 @@ app.post("/", (request, response) => {
   }
 
   function showCamera(agent) {
-    agent.add(new Image(nest.camera("e")));
+    agent.add(new Image(utils.uniqueUrl(nest.camera("e"))));
   }
 
   function lockDoor(agent) {
