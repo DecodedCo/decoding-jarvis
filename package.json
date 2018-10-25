@@ -1,6 +1,6 @@
 {
   "name": "jarvis",
-  "description": "This is the default fulfillment for a Dialogflow agents using Cloud Functions for Firebase",
+  "description": "Webhook for dialogflow using Heroku",
   "version": "0.0.2",
   "private": true,
   "license": "Apache Version 2.0",
@@ -19,10 +19,7 @@
     "dialogflow-fulfillment": "^0.5.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
-    "firebase-admin": "^5.13.1",
-    "firebase-functions": "^2.0.2",
     "node-spotify-api": "^1.0.7",
-    "prettier": "^1.14.3",
-    "unofficial-nest-api": "^0.1.4"
+    "prettier": "^1.14.3"
   }
 }
