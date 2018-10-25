@@ -74,12 +74,12 @@ app.post("/", (request, response) => {
 
   function playMusic(agent) {
     let music = request.body.queryResult.parameters["music"];
+    agent.add(`Playing ${music}...`);
     console.log("Going to play", music); // passed through as a parameter
     spotify
       .searchv2(music)
       .then(result => {
         smartthings.sonos("playTrack", result).then(result => {
-          agent.add(`Playing ${music}...`);
           agent.add(result); // this does not return quickly enough
           console.log(result);
         });
