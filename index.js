@@ -42,9 +42,6 @@ app.post("/", (request, response) => {
 
   // Add your own functions below:
 
-
-
-
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set("Default Welcome Intent", welcome);
@@ -52,9 +49,6 @@ app.post("/", (request, response) => {
   intentMap.set("Turn on light", turnOnLight);
 
   // Add your own intents below:
-
-
-
 
   agent.handleRequest(intentMap);
 });

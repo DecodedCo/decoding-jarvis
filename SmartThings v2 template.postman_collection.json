@@ -1,862 +1,694 @@
 {
-	"info": {
-		"_postman_id": "27ae4d17-ed96-45aa-80c4-e05b26ec7976",
-		"name": "SmartThings v2 template",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Lock",
-			"item": [
-				{
-					"name": "Lock - Lock",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"lock\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Lock - Unlock",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"unlock\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Lock - Status",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/lock/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"lock",
-								"status"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Sonos",
-			"item": [
-				{
-					"name": "Sonos - Check Status",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/musicPlayer/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"musicPlayer",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sonos - Set volume",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"setLevel\",\n    \"arguments\": [100]\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Sonos - Play Track",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"playTrack\",\n    \"arguments\": [\"x-sonos-spotify:spotify:track:7GhIk7Il098yCjg4BQjzvb?sid=12&flags=8224&sn=1\"]\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Sonos - Pause",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"pause\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Sonos - Play",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"play\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Outlet",
-			"item": [
-				{
-					"name": "Outlet - Status",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/switch/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"switch",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Outlet - Power Consumption",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/powerMeter/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"powerMeter",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Outlet - Off",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"off\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Outlet - On",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"on\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Smart Bulb",
-			"item": [
-				{
-					"name": "Light - Check Status",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/light/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"light",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Check Color",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/colorControl/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"colorControl",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Check Color Temp",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/colorTemperature/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"colorTemperature",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Check Brightness",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/switchLevel/status",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"components",
-								"main",
-								"capabilities",
-								"switchLevel",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Turn Red",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"colorControl\",\n      \"command\": \"setColor\",\n      \"arguments\": [\n        { \"hue\":0, \"saturation\": 100}\n        ]\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Turn On",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"on\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Turn Off",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"off\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				},
-				{
-					"name": "Light - Brightness",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer: {{TOKEN}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switchLevel\",\n      \"command\": \"setLevel\",\n      \"arguments\": [ 50 ]\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-							"protocol": "https",
-							"host": [
-								"api",
-								"smartthings",
-								"com"
-							],
-							"path": [
-								"v1",
-								"devices",
-								"DEVICEID",
-								"commands"
-							]
-						},
-						"description": "Send a command to a device"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "SmartThings - List Devices",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer: {{TOKEN}}"
-					}
-				],
-				"body": {},
-				"url": {
-					"raw": "https://api.smartthings.com/v1/devices",
-					"protocol": "https",
-					"host": [
-						"api",
-						"smartthings",
-						"com"
-					],
-					"path": [
-						"v1",
-						"devices"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SmartThings - Device Capabilities",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer: {{TOKEN}}"
-					}
-				],
-				"body": {},
-				"url": {
-					"raw": "https://api.smartthings.com/v1/devices/DEVICEID",
-					"protocol": "https",
-					"host": [
-						"api",
-						"smartthings",
-						"com"
-					],
-					"path": [
-						"v1",
-						"devices",
-						"DEVICEID"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SmartThings - Send Command to Device",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer: {{TOKEN}}"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"unlock\"\n    }\n  ]\n}"
-				},
-				"url": {
-					"raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
-					"protocol": "https",
-					"host": [
-						"api",
-						"smartthings",
-						"com"
-					],
-					"path": [
-						"v1",
-						"devices",
-						"DEVICEID",
-						"commands"
-					]
-				},
-				"description": "Send a command to a device"
-			},
-			"response": []
-		},
-		{
-			"name": "SmartThings - Check Device Status",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer: {{TOKEN}}"
-					}
-				],
-				"body": {},
-				"url": {
-					"raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/CAPABILITY/status",
-					"protocol": "https",
-					"host": [
-						"api",
-						"smartthings",
-						"com"
-					],
-					"path": [
-						"v1",
-						"devices",
-						"DEVICEID",
-						"components",
-						"main",
-						"capabilities",
-						"CAPABILITY",
-						"status"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "27ae4d17-ed96-45aa-80c4-e05b26ec7976",
+    "name": "SmartThings v2 template",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Lock",
+      "item": [
+        {
+          "name": "Lock - Lock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"lock\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Lock - Unlock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"unlock\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Lock - Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/lock/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "lock",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sonos",
+      "item": [
+        {
+          "name": "Sonos - Check Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/musicPlayer/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "musicPlayer",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sonos - Set volume",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"setLevel\",\n    \"arguments\": [100]\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Sonos - Play Track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"playTrack\",\n    \"arguments\": [\"x-sonos-spotify:spotify:track:7GhIk7Il098yCjg4BQjzvb?sid=12&flags=8224&sn=1\"]\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Sonos - Pause",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"pause\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Sonos - Play",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"musicPlayer\",\n    \"command\": \"play\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Outlet",
+      "item": [
+        {
+          "name": "Outlet - Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/switch/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "switch",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Outlet - Power Consumption",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/powerMeter/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "powerMeter",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Outlet - Off",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"off\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Outlet - On",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"on\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Smart Bulb",
+      "item": [
+        {
+          "name": "Light - Check Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/light/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "light",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Check Color",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/colorControl/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "colorControl",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Check Color Temp",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/colorTemperature/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "colorTemperature",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Check Brightness",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/switchLevel/status",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": [
+                "v1",
+                "devices",
+                "DEVICEID",
+                "components",
+                "main",
+                "capabilities",
+                "switchLevel",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Turn Red",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"colorControl\",\n      \"command\": \"setColor\",\n      \"arguments\": [\n        { \"hue\":0, \"saturation\": 100}\n        ]\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Turn On",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"on\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Turn Off",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switch\",\n      \"command\": \"off\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        },
+        {
+          "name": "Light - Brightness",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer: {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"switchLevel\",\n      \"command\": \"setLevel\",\n      \"arguments\": [ 50 ]\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+              "protocol": "https",
+              "host": ["api", "smartthings", "com"],
+              "path": ["v1", "devices", "DEVICEID", "commands"]
+            },
+            "description": "Send a command to a device"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SmartThings - List Devices",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer: {{TOKEN}}"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "https://api.smartthings.com/v1/devices",
+          "protocol": "https",
+          "host": ["api", "smartthings", "com"],
+          "path": ["v1", "devices"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SmartThings - Device Capabilities",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer: {{TOKEN}}"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "https://api.smartthings.com/v1/devices/DEVICEID",
+          "protocol": "https",
+          "host": ["api", "smartthings", "com"],
+          "path": ["v1", "devices", "DEVICEID"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SmartThings - Send Command to Device",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer: {{TOKEN}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"commands\": [\n    {\n      \"component\": \"main\",\n      \"capability\": \"lock\",\n      \"command\": \"unlock\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "https://api.smartthings.com/v1/devices/DEVICEID/commands",
+          "protocol": "https",
+          "host": ["api", "smartthings", "com"],
+          "path": ["v1", "devices", "DEVICEID", "commands"]
+        },
+        "description": "Send a command to a device"
+      },
+      "response": []
+    },
+    {
+      "name": "SmartThings - Check Device Status",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer: {{TOKEN}}"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "https://api.smartthings.com/v1/devices/DEVICEID/components/main/capabilities/CAPABILITY/status",
+          "protocol": "https",
+          "host": ["api", "smartthings", "com"],
+          "path": [
+            "v1",
+            "devices",
+            "DEVICEID",
+            "components",
+            "main",
+            "capabilities",
+            "CAPABILITY",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

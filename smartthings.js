@@ -9,9 +9,9 @@ const host = "api.smartthings.com";
 const token = process.env.smartthings_token;
 const devices = {
   light: "", //
-  lock: "", // 
-  sonos: "", // 
-  outlet: "" //
+  lock: "", //
+  sonos: "", //
+  outlet: "", //
 };
 
 var fulfillmentText;
