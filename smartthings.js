@@ -8,10 +8,10 @@ const https = require("https");
 const host = "api.smartthings.com";
 const token = process.env.smartthings_token;
 const devices = {
-  light: "8aee0c3a-d0ab-4b49-9340-6c0c71e7702a",
-  lock: "",
-  sonos: "08457615-7db0-4e76-882d-de35bae5ac08",
-  outlet: "",
+  light: "", //
+  lock: "", // 
+  sonos: "", // 
+  outlet: "" //
 };
 
 var fulfillmentText;
