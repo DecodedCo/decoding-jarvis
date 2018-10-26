@@ -109,31 +109,6 @@ app.post("/", (request, response) => {
     agent.add(new Image(nest.camera("e")));
   }
 
-  function detectEmotion(agent) {
-    let url = nest.camera("e");
-
-    return new Promise((resolve, reject) => {
-      agent.add(new Image(url));
-      microsoft
-        .emotion(url)
-        .then(emotion => {
-          console.log(emotion);
-          if (emotion.happiness > 0.5) {
-            agent.add("You're happy enough to come in!");
-            resolve(unlockDoor(agent));
-          } else {
-            agent.add(`You're not happy enough: ${emotion.happiness}`);
-            resolve();
-          }
-        })
-        .catch(error => {
-          agent.add(`Error: ${error}`);
-          console.log(`Error: ${error}`);
-          resolve();
-        });
-    });
-  }
-
   function lockDoor(agent) {
     return new Promise((resolve, reject) => {
       smartthings.lock("lock").then(result => {
@@ -175,6 +150,33 @@ app.post("/", (request, response) => {
     });
   }
 
+  // Advanced
+
+  function detectEmotion(agent) {
+    let url = nest.camera("e");
+
+    return new Promise((resolve, reject) => {
+      agent.add(new Image(url));
+      microsoft
+        .emotion(url)
+        .then(emotion => {
+          console.log(emotion);
+          if (emotion.happiness > 0.5) {
+            agent.add("You're happy enough to come in!");
+            resolve(unlockDoor(agent));
+          } else {
+            agent.add(`You're not happy enough: ${emotion.happiness}`);
+            resolve();
+          }
+        })
+        .catch(error => {
+          agent.add(`Error: ${error}`);
+          console.log(`Error: ${error}`);
+          resolve();
+        });
+    });
+  }
+
   function checkWeather(agent) {
     let location = "Sao Paulo";
 
@@ -195,6 +197,52 @@ app.post("/", (request, response) => {
       });
     });
   }
+
+  function playMusicByDay(agent) {
+
+    let d = new Date();
+    let today = d.getDay();
+
+    switch (today) {
+      case 0: // Sunday
+        var song = "3lX49Bqy21Y5HneUJ7p55G";
+        break;
+      case 1: // Monday
+        var song = "3EFb1qDgIqf9MegIryKtDj";
+        break;
+      case 2: // Tuesday
+        var song = "1OX2eJLfU0SHLzcy9sv9Vj";
+        break;
+      case 3: // Wednesday
+        var song = "3PIitkAK79cY9SFcIEEIH9";
+        break;
+      case 4: // Thursday
+        var song = "17Qsq7qxgGBDGfahhnX6bw";
+        break;
+      case 5: // Friday
+        var song = "4QlzkaRHtU8gAdwqjWmO8n";
+        break;
+      case 6: // Saturday
+        var song = "59VRFpPnC8pOhIH2WCWXF9";
+        break;
+    }
+
+    console.log(`Song: ${song}`);
+
+    let sonosData = {
+      name: `Today's song`,
+      sonosUri: spotify.sonosUri(song)
+    }
+
+    return new Promise((resolve, reject) => {
+      smartthings.sonos("playTrack", sonosData).then(result => {
+        agent.add(result);
+        console.log(result);
+        resolve();
+      });
+    });
+  }
+
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set("Default Welcome Intent", welcome);
@@ -209,8 +257,11 @@ app.post("/", (request, response) => {
   intentMap.set("Lock door", lockDoor);
   intentMap.set("Unlock door", unlockDoor);
   intentMap.set("Play music", playMusic);
+
+  // Advanced:
   intentMap.set("Detect emotion", detectEmotion);
   intentMap.set("Check weather", checkWeather);
+  intentMap.set("Play music by day", playMusicByDay);
 
   agent.handleRequest(intentMap);
 });
