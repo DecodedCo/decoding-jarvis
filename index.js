@@ -33,10 +33,12 @@ app.post("/", (request, response) => {
   }
 
   function turnOnLight(agent) {
-    agent.add("Turning the lights on");
-    smartthings.light("switch", "on").then(result => {
-      agent.add(result); // this does not return quickly enough
-      console.log(result);
+    return new Promise((resolve, reject) => {
+      smartthings.light("switch", "on").then(result => {
+        agent.add(result); // response to dialogflow
+        console.log(result);
+        resolve();
+      });
     });
   }
 
