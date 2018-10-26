@@ -11,6 +11,7 @@ const spotify = require("./spotify.js");
 const nest = require("./nest.js");
 const utils = require("./utils.js");
 const microsoft = require("./microsoft.js");
+const weather = require('weather-js');
 
 let app = express();
 
@@ -173,6 +174,27 @@ app.post("/", (request, response) => {
       });
     });
   }
+
+  function checkWeather(agent) {
+    let location = "Sao Paulo";
+
+    return new Promise((resolve, reject) => {
+      weather.find({search: location, degreeType: 'C'}, function(err, result) {
+        if(err) resolve(`Error: ${err}`);
+        console.log(result[0]);
+        let currentWeather = result[0].current;
+
+        agent.add(`Current temperature in ${location} is ${currentWeather.temperature}`);
+
+        if (currentWeather.temperature > 20) {
+          resolve(turnOnOutlet(agent));
+        } else {
+          resolve(turnOffOutlet(agent));
+        }
+
+      });
+    });
+  }
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set("Default Welcome Intent", welcome);
@@ -188,6 +210,7 @@ app.post("/", (request, response) => {
   intentMap.set("Unlock door", unlockDoor);
   intentMap.set("Play music", playMusic);
   intentMap.set("Detect emotion", detectEmotion);
+  intentMap.set("Check weather", checkWeather);
 
   agent.handleRequest(intentMap);
 });
