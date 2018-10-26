@@ -21,7 +21,10 @@ app.use(bodyParser.json());
 app.post("/", (request, response) => {
   console.log("Dialogflow Request headers: " + JSON.stringify(request.headers));
   console.log("Dialogflow Request body: " + JSON.stringify(request.body));
-  const agent = new WebhookClient({ request, response });
+  const agent = new WebhookClient({
+    request,
+    response,
+  });
 
   function welcome(agent) {
     agent.add(`Welcome to my agent!`);
@@ -102,13 +105,38 @@ app.post("/", (request, response) => {
   }
 
   function showCamera(agent) {
-    agent.add(new Image(utils.uniqueUrl(nest.camera("e"))));
+    agent.add(new Image(nest.camera("e")));
+  }
+
+  function detectEmotion(agent) {
+    let url = nest.camera("e");
+
+    return new Promise((resolve, reject) => {
+      agent.add(new Image(url));
+      microsoft
+        .emotion(url)
+        .then(emotion => {
+          console.log(emotion);
+          if (emotion.happiness > 0.5) {
+            agent.add("You're happy enough to come in!");
+            resolve(unlockDoor(agent));
+          } else {
+            agent.add(`You're not happy enough: ${emotion.happiness}`);
+            resolve();
+          }
+        })
+        .catch(error => {
+          agent.add(`Error: ${error}`);
+          console.log(`Error: ${error}`);
+          resolve();
+        });
+    });
   }
 
   function lockDoor(agent) {
     return new Promise((resolve, reject) => {
       smartthings.lock("lock").then(result => {
-        agent.add(result); // this does not return quickly enough
+        agent.add(result);
         console.log(result);
         resolve();
       });
@@ -159,6 +187,8 @@ app.post("/", (request, response) => {
   intentMap.set("Lock door", lockDoor);
   intentMap.set("Unlock door", unlockDoor);
   intentMap.set("Play music", playMusic);
+  intentMap.set("Detect emotion", detectEmotion);
+
   agent.handleRequest(intentMap);
 });
 

@@ -1,8 +1,7 @@
 var request = require("request");
 
-// update for Face not Emotion API
-
-exports.emotion = imageUrl => {
+let face = imageUrl => {
+  console.log(`Checking for faces in ${imageUrl}`);
   return new Promise((resolve, reject) => {
     if (!process.env.microsoft_key_face) {
       reject("No Microsoft Key detected");
@@ -11,16 +10,18 @@ exports.emotion = imageUrl => {
     }
 
     var options = {
-      url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize",
+      url:
+        "https://southcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise",
       method: "POST",
       body: '{"url": "' + imageUrl + '"}',
       headers: {
         "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": process.env.microsoft_key,
+        "Ocp-Apim-Subscription-Key": process.env.microsoft_key_face,
       },
-      timeout: 3000,
+      timeout: 2000,
     };
 
+    console.log("Making request to Microsoft");
     request(options, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         var results = JSON.parse(body); // response from Emotion API
@@ -32,8 +33,21 @@ exports.emotion = imageUrl => {
         }
       } else {
         // there was an error
-        reject(error);
+        reject(`Error: ${error}`);
       } // end processing response
     }); // end request
   }); // end Promise
 }; // end microsoftEmotion
+
+exports.emotion = imageUrl => {
+  return new Promise((resolve, reject) => {
+    face(imageUrl)
+      .then(result => {
+        let data = result[0].faceAttributes.emotion;
+        resolve(data);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+};
