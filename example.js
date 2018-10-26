@@ -152,6 +152,17 @@ app.post("/", (request, response) => {
 
   // Advanced
 
+  function welcomeHome(agent) {
+    return new Promise((resolve, reject) => {
+      agent.add("Welcome home sir!");
+      turnOnLight(agent).then( () => {
+        unlockDoor(agent).then( () => {
+          resolve(turnOnOutlet(agent));
+        })
+      })
+    });
+  }
+
   function detectEmotion(agent) {
     let url = nest.camera("e");
 
@@ -285,6 +296,7 @@ app.post("/", (request, response) => {
   intentMap.set("Play music", playMusic);
 
   // Advanced:
+  intentMap.set("Welcome home", welcomeHome);
   intentMap.set("Detect emotion", detectEmotion);
   intentMap.set("Check weather", checkWeather);
   intentMap.set("Play music by day", playMusicByDay);
