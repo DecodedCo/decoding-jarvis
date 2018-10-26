@@ -205,25 +205,25 @@ app.post("/", (request, response) => {
 
     switch (today) {
       case 0: // Sunday
-        var song = "3lX49Bqy21Y5HneUJ7p55G";
+        var song = "spotify:track:3lX49Bqy21Y5HneUJ7p55G";
         break;
       case 1: // Monday
-        var song = "3EFb1qDgIqf9MegIryKtDj";
+        var song = "spotify:track:3EFb1qDgIqf9MegIryKtDj";
         break;
       case 2: // Tuesday
-        var song = "1OX2eJLfU0SHLzcy9sv9Vj";
+        var song = "spotify:track:1OX2eJLfU0SHLzcy9sv9Vj";
         break;
       case 3: // Wednesday
-        var song = "3PIitkAK79cY9SFcIEEIH9";
+        var song = "spotify:track:3PIitkAK79cY9SFcIEEIH9";
         break;
       case 4: // Thursday
-        var song = "17Qsq7qxgGBDGfahhnX6bw";
+        var song = "spotify:track:17Qsq7qxgGBDGfahhnX6bw";
         break;
       case 5: // Friday
-        var song = "4QlzkaRHtU8gAdwqjWmO8n";
+        var song = "spotify:track:4QlzkaRHtU8gAdwqjWmO8n";
         break;
       case 6: // Saturday
-        var song = "59VRFpPnC8pOhIH2WCWXF9";
+        var song = "spotify:track:59VRFpPnC8pOhIH2WCWXF9";
         break;
     }
 
@@ -233,6 +233,8 @@ app.post("/", (request, response) => {
       name: `Today's song`,
       sonosUri: spotify.sonosUri(song)
     }
+
+    console.log(sonosData);
 
     return new Promise((resolve, reject) => {
       smartthings.sonos("playTrack", sonosData).then(result => {
