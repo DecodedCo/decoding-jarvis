@@ -157,10 +157,21 @@ app.post("/", (request, response) => {
       agent.add("Welcome home sir!");
       turnOnLight(agent).then( () => {
         unlockDoor(agent).then( () => {
-          resolve(turnOnOutlet(agent));
-        })
-      })
-    });
+          turnOnOutlet(agent).then( () => {
+            let song = "spotify:track:3lX49Bqy21Y5HneUJ7p55G";
+            let sonosData = {
+              name: `Today's song`,
+              sonosUri: spotify.sonosUri(song)
+            }  
+            smartthings.sonos("playTrack", sonosData).then(result => {
+              agent.add(result);
+              console.log(result);
+              resolve();
+            }); // end sonos
+          }); // end outlet
+        }); // end unlock door
+      }); // end turn on light
+    }); // end Promise
   }
 
   function detectEmotion(agent) {
