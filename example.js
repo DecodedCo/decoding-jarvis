@@ -245,6 +245,30 @@ app.post("/", (request, response) => {
     });
   }
 
+  function customModel(agent) {
+    let url = nest.camera("e");
+
+    return new Promise((resolve, reject) => {
+      agent.add(new Image(url));
+      microsoft
+        .prediction(url)
+        .then(prediction => {
+          if (prediction.down > 0.6) {
+            agent.add("Thumbs down");
+          } else if (prediction.up > 0.6) {
+            agent.add("Thumbs up");
+          } else {
+            agent.add("No good prediction");
+          }
+          resolve();
+        })
+        .catch(error => {
+          agent.add(`Error: ${error}`);
+          console.log(`Error: ${error}`);
+          resolve();
+        });
+    });
+  }
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set("Default Welcome Intent", welcome);
@@ -264,6 +288,7 @@ app.post("/", (request, response) => {
   intentMap.set("Detect emotion", detectEmotion);
   intentMap.set("Check weather", checkWeather);
   intentMap.set("Play music by day", playMusicByDay);
+  intentMap.set("Custom model", customModel);
 
   agent.handleRequest(intentMap);
 });
