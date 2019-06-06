@@ -1,0 +1,6 @@
+{
+  "ec2keyfile":"",
+  "ec2user":"",
+  "ec2instance":"",
+  "serverFile":"index.js"
+}

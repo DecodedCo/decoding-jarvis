@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "setup": "node setup.js",
     "deploy": "node deploy.js",
     "autolint": "./node_modules/.bin/prettier --write \"**/*.js*\"",
     "lint": "./node_modules/.bin/prettier --list-different \"**/*.js*\""

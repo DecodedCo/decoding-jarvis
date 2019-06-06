@@ -1,14 +1,14 @@
 "use strict";
-require("dotenv").config();
-
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 var Client = require('ssh2').Client;
 var conn = new Client();
 
+var config = JSON.parse(require('fs').readFileSync('config.json'));
+
 const args = process.argv.slice(2);
-var serverFile = process.env.serverFile;
+var serverFile = config['serverFile'];
 if (args.length == 1){
   serverFile = args[0];
   if (serverFile.substr(serverFile.length - 3) !== '.js'){
@@ -34,19 +34,19 @@ function sshIn(){
       });
     });
   }).connect({
-    host: process.env.ec2instance,
+    host: config['ec2instance'],
     port: 22,
-    username: 'ec2-user',
-    privateKey: require('fs').readFileSync(process.env.ec2keyfile)
+    username: config['ec2user'],
+    privateKey: require('fs').readFileSync(config['ec2keyfile'])
   });
 }
 
 async function rsync() {
-  const { stdout, stderr } = await exec('rsync -av -e "ssh -i ' + process.env.ec2keyfile + '" --exclude "node_modules/" . ec2-user@' + process.env.ec2instance + ':~/');
+  const { stdout, stderr } = await exec('rsync -av -e "ssh -i ' + config['ec2keyfile'] + '" --exclude "node_modules/" . ' + config['ec2user'] + '@' + config['ec2instance'] + ':~/');
   if (stderr !== ''){
     console.log('Error:', stderr);
   } else {
-    console.log('Successfully deployed to ' + process.env.ec2instance);
+    console.log('Successfully deployed to ' + config['ec2instance']);
     sshIn();
   }
 }
