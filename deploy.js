@@ -19,17 +19,19 @@ if (args.length == 1){
 function sshIn(){
   conn.on('ready', function() {
     console.log('Launching JARVIS using ' + serverFile);
-    conn.exec('pkill -SIGINT -f "node .*.js" && node ' + serverFile, function(err, stream){
-      if (err) throw err;
+    conn.exec('pkill -SIGINT -f "node .*.js" && echo Public Address: http://$(curl http://checkip.amazonaws.com):5000 && node ' + serverFile, function(err, stream){
+      if (err) throw err
       stream.on('close', function(code, signal) {
         console.log('Connection closed');
         conn.end();
       }).on('data', function(data) {
         console.log(data.toString());
-        conn.end();
+        if(!data.toString().includes("Public Address:")){
+          conn.end();
+        }
       }).stderr.on('data', function(data) {
         if (data !== ''){
-          console.log('ERROR: ' + data);
+         //console.log('ERROR: ' + data);
         }
       });
     });
