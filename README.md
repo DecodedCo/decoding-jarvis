@@ -1,4 +1,4 @@
-# Jarvisv2 Dialogflow Webhook Library
+# Jarvisv3 Dialogflow Webhook Library
 
 This library provides fuctionality for integrating a variety of IoT devices with Dialogflow.
 
@@ -6,36 +6,63 @@ This library provides fuctionality for integrating a variety of IoT devices with
 
 1. Nest Camera
 3. Samsung Smarthings Hub
-  4. Samsung Smarthings Power Outlet
-  6. Silvania Smart Bulb
-  8. Sonos (using Spotify)
-  9. Yale Lock
+4. Samsung Smarthings Power Outlet
+6. Silvania Smart Bulb
+8. Sonos (using Spotify)
+9. Yale Lock
 
-## Setup
+## Deploying to AWS
 
-You will need a Dialogflow project and a Heroku account.
+#### Setup EC2 Instance in AWS Console
 
-1. Clone this repository: `git clone https://github.com/DecodedCo/decoding-jarvis.git`
-2. Create a new heroku app: `heroku create`
-3. Update the heroku environment variables `heroku config:set ...` - ask for private `.env` file, or follow manually below
-4. Deploy to heroku using `git push heroku master`
-5. Make any updates by first committing your code: `git commit -am "Your commit message"` then by following step 4.
+1. Log into [AWS Management Console](https://console.aws.amazon.com)
+2. Go to the EC2 Management console. Click Services, and choose EC2 under Compute
+3. Launch a new instance by clicking the blue “Launch Instance” button
+4. Select Amazon Linux 2 (likely defaults to first option)
+5. Choose t2.micro type machine
+6. Skip to the *step 6*. Configure Security Group and create a security group that allows each of the following types of connections. These will allow us to connect to the instance directly from our own machines, and through a web browser or Dialogflow. See below for the specific settings:
+
+![alt text](https://presley-assets.decoded.com/71271f08-4007-4d92-a14c-e308ba781246_awssetup.png "AWS Setup")
+
+7. Click Review and Launch, then Launch. You’ll be prompted to add a key pair - name a new one and *be sure to download the file* (it will warn you if you don’t click download).
+
+8. Launch the instance and edit the name to something memorable (double-click on the name field)
+
+#### Setup EC2 Instance from Terminal
+
+9. Move the .pem keyfile you downloaded to this project directory. In a Terminal, navigate to the this directory and run `$ chmod 400 <filename>` to set appropriate file permissions.
+
+10. Edit config.json to include the filename of the keyfile, the EC2 username (by default for the Amazon Linux option we picked, it’s ec2-user) and the public DNS of your instance from the EC2 console. Save the file.
+
+11. In a Terminal, run `$ node setup` from the project directory to install node and download the necessary packages to run the webapp. It may prompt you to accept the ECDSA signature - simply type “yes” and rerun `$ node setup`.
+
+
+#### Deploy App to Instance
+
+Once you have completed all of the setup steps, you should be ready to deploy your app!
+
+1. In a Terminal, run `$ node deploy` from the project directory.
+
+2. Navigate to the IP address printed out, or get the public IP from the EC2 page on the AWS console
+
+3. Visit public IP on port 5000 (example, 18.224.5.165:5000) in the browser and see your app!
+
 
 ### smartthings
 
 1. Obtain your Personal Access Token (`token`) from https://account.smartthings.com/tokens.
-2. Set the environment variable for your deployment: `heroku config:set smartthings_token="TOKEN"`
+2. Set the environment variable in your `.env` file for your deployment: `smartthings_token="TOKEN"`
 3. Collect the necessary Device Ids (`devices`) from https://api.smartthings.com/v1/devices (called with header `Authorization: Bearer: token`) and update `smartthings.js`
 4. Update `colors.js` with your desired color map if you are using the lightbulb
 
 ### Nest Camera
 
 1. Obtain the snapshot URL following https://github.com/DecodedCo/decoding-jarvis/blob/webapp/documentation/nest.md
-2. Set the environment variable for e.g. camera A: `heroku config:set nest_a_uri=""`
+2. Set the environment variable in your `.env` file for e.g. camera A: `nest_a_uri=""`
 
 ### Spotify
 
-1. Set the environment variables: `heroku config:set spotify_id=""` and `heroku config:set spotify_secret=""`
+1. Set the environment variables in your `.env` file: `spotify_id=""`
 
 ### Sonos
 
@@ -185,3 +212,4 @@ Returns URL for most recent image from e.g. camera A:
 ```
 agent.add(new Image(nest.camera("a")));
 ```
+
