@@ -185,7 +185,7 @@ agent.add(new Image(nest.camera("a")));
 3. Launch a new instance by clicking the blue “Launch Instance” button
 4. Select Amazon Linux 2 (likely defaults to first option)
 5. Choose t2.micro type machine
-6. Skip to the **step 6**. Configure Security Group and create a security group that allows each of the following types of connections. These will allow us to connect to the instance directly from our own machines, and through a web browser or Dialogflow. See below for the specific settings:
+6. Skip to **6. Configure Security Group** and create a security group that allows each of the following types of connections. These will allow us to connect to the instance directly from our own machines, and through a web browser or Dialogflow. See below for the specific settings:
 
 ![alt text](https://presley-assets.decoded.com/71271f08-4007-4d92-a14c-e308ba781246_awssetup.png "AWS Setup")
 
@@ -195,7 +195,7 @@ agent.add(new Image(nest.camera("a")));
 
 #### Setup EC2 Instance from Terminal
 
-9. Move the .pem keyfile you downloaded to this project directory. In a Terminal, navigate to the this directory and run `$ chmod 400 <filename>` to set appropriate file permissions.
+9. Move the .pem keyfile you downloaded to this project directory. In a Terminal, navigate to this directory (`$ cd decoding-jarvis`) and run `$ chmod 400 <filename>` to set appropriate file permissions.
 
 10. Edit config.json to include the filename of the keyfile, the EC2 username (by default for the Amazon Linux option we picked, it’s ec2-user) and the public DNS of your instance from the EC2 console. Save the file.
 
@@ -210,5 +210,5 @@ Once you have completed all of the setup steps, you should be ready to deploy yo
 
 2. Navigate to the IP address printed out, or get the public IP from the EC2 page on the AWS console
 
-3. Visit public IP on port 5000 (example, 18.224.5.165:5000) in the browser and see your app!
+3. Visit public IP on port 5000 (example, 12.345.6.78:5000) in the browser and see your app!
 
