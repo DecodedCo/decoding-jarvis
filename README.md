@@ -20,11 +20,11 @@ This library provides fuctionality for integrating a variety of IoT devices with
 3. Launch a new instance by clicking the blue “Launch Instance” button
 4. Select Amazon Linux 2 (likely defaults to first option)
 5. Choose t2.micro type machine
-6. Skip to the *step 6*. Configure Security Group and create a security group that allows each of the following types of connections. These will allow us to connect to the instance directly from our own machines, and through a web browser or Dialogflow. See below for the specific settings:
+6. Skip to the **step 6**. Configure Security Group and create a security group that allows each of the following types of connections. These will allow us to connect to the instance directly from our own machines, and through a web browser or Dialogflow. See below for the specific settings:
 
 ![alt text](https://presley-assets.decoded.com/71271f08-4007-4d92-a14c-e308ba781246_awssetup.png "AWS Setup")
 
-7. Click Review and Launch, then Launch. You’ll be prompted to add a key pair - name a new one and *be sure to download the file* (it will warn you if you don’t click download).
+7. Click Review and Launch, then Launch. You’ll be prompted to add a key pair - name a new one and **be sure to download the file** (it will warn you if you don’t click download).
 
 8. Launch the instance and edit the name to something memorable (double-click on the name field)
 
