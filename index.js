@@ -18,6 +18,10 @@ process.env.DEBUG = "dialogflow:debug"; // enables lib debugging statements
 
 app.use(bodyParser.json());
 
+app.get('/', function (request, response) {
+  response.send('Hello, world!')
+});
+
 app.post("/", (request, response) => {
   console.log("Dialogflow Request headers: " + JSON.stringify(request.headers));
   console.log("Dialogflow Request body: " + JSON.stringify(request.body));
