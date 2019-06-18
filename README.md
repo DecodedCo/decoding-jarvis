@@ -9,7 +9,7 @@ If you are participating in the live session, you will need to:
 4. Be sure to use `node version 8.16.0` by running `$nvm install 8.16.0` and `$nvm use 8.16.0` in the Terminal.
 5. Install neccessary Node packages by running `$npm install` in the Terminal.
 6. Create and set up an AWS EC2 instance (or use an existing one), then deploy (see "Deploying to AWS" below).
-7. Enable webhook fulfillment for your Dialogflow agent and use the public IP address as your URL.
+7. Enable webhook fulfillment for your [Dialogflow](http://dialogflow.com) agent and use the public IP address as your URL. Be sure to map your Dialogflow intents to functions in your server file.
 
 ## Supported Devices
 
