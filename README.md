@@ -223,3 +223,6 @@ Once you have completed all of the setup steps, you should be ready to deploy yo
 
 3. Visit public IP on port 5000 (example, 12.345.6.78:5000) in the browser and see your app!
 
+# Outside APIs
+
+If you want to integrate outside APIs into your Jarvis program, you can! In the live session we saw several machine learning APIs including the [Google Cloud Vision API](https://cloud.google.com/vision/) and [Microsoft Cognitive Service](azure.microsoft.com/en-us/services/cognitive-services). We also saw some API directories, including [toddmotto's Public APIs](https://github.com/public-apis/public-apis) and [Programmable Web](https://www.programmableweb.com/category/all/apis). 
