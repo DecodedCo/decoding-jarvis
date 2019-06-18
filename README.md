@@ -2,6 +2,15 @@
 
 This library provides fuctionality for integrating a variety of IoT devices with Dialogflow.
 
+If you are participating in the live session, you will need to:
+1. Clone this repo by running `$git clone https://github.com/DecodedCo/decoding-jarvis.git` in your Terminal, then change into the new directory by running `$cd decoding-jarvis`.
+2. Create a new file called `.env` in your local directory containing environment variables such as API tokens. Please use the environment variables provided.
+3. Update `smartthings.js` to include your device IDs.
+4. Be sure to use `node version 8.16.0` by running `$nvm install 8.16.0` and `$nvm use 8.16.0` in the Terminal.
+5. Install neccessary Node packages by running `$npm install` in the Terminal.
+6. Create and set up an AWS EC2 instance (or use an existing one), then deploy (see "Deploying to AWS" below).
+7. Enable webhook fulfillment for your Dialogflow agent and use the public IP address as your URL.
+
 ## Supported Devices
 
 1. Nest Camera
@@ -12,6 +21,8 @@ This library provides fuctionality for integrating a variety of IoT devices with
 9. Yale Lock
 
 ### SmartThings
+
+If you are participating in a live session, skip ahead to step 3:
 
 1. Obtain your Personal Access Token (`token`) from https://account.smartthings.com/tokens.
 2. Set the environment variable in your `.env` file for your deployment: `smartthings_token="TOKEN"`
