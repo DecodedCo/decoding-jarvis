@@ -11,6 +11,7 @@ const spotify = require("./spotify.js");
 const nest = require("./nest.js");
 const utils = require("./utils.js");
 const microsoft = require("./microsoft.js");
+const twilio = require("./twilio.js");
 const weather = require('weather-js');
 
 let app = express();
@@ -150,6 +151,27 @@ app.post("/", (request, response) => {
     });
   }
 
+  function textNumber(agent) {
+    var toNumber = null;
+    var textContent = 'hello world';
+    if (!toNumber) {
+      agent.add('No number is set');
+      return;
+    }
+    return new Promise((resolve, reject) => {
+      agent.add("Texting number...");
+      twilio.text(toNumber, textContent).then(result => {
+        agent.add(result);
+        console.log(result)
+        resolve();
+      }).catch(error => {
+        agent.add(`Error: ${error}`);
+        console.log(`Error: ${error}`);
+        resolve();
+      })
+    })
+  }
+
   // Advanced
 
   function welcomeHome(agent) {
@@ -162,7 +184,7 @@ app.post("/", (request, response) => {
             let sonosData = {
               name: `Today's song`,
               sonosUri: spotify.sonosUri(song)
-            }  
+            }
             smartthings.sonos("playTrack", sonosData).then(result => {
               agent.add(result);
               console.log(result);
@@ -305,6 +327,7 @@ app.post("/", (request, response) => {
   intentMap.set("Lock door", lockDoor);
   intentMap.set("Unlock door", unlockDoor);
   intentMap.set("Play music", playMusic);
+  intentMap.set("Text number", textNumber);
 
   // Advanced:
   intentMap.set("Welcome home", welcomeHome);
